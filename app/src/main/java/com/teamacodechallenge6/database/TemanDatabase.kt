@@ -16,7 +16,7 @@ abstract class TemanDatabase :RoomDatabase() {
             if (INSTANCE == null){
                 synchronized(TemanDatabase::class){
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
-                    TemanDatabase::class.java, "Teman.db").build()
+                    TemanDatabase::class.java, "myDB").build()
                 }
             }
             return INSTANCE

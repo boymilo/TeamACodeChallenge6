@@ -5,88 +5,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ProfileTeman">
+    tools:context=".ui.profileteman.ProfileTeman">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/ib_home"
-        android:layout_margin="15dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_home"/>
+        android:layout_margin="15dp"
+        android:src="@drawable/ic_home" />
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/ic_launcher_background"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/ic_splash_screen2" />
 
     <LinearLayout
         android:id="@+id/ll1"
-        android:layout_below="@+id/iv_logo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Nama Teman: "/>
+            android:fontFamily="@font/comic"
+            android:text="Nama Teman: " />
+
         <EditText
+            android:id="@+id/etAddNama"
+            android:fontFamily="@font/comic"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll2"
-        android:layout_below="@+id/ll1"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/ll1"
+        android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Email : "/>
+            android:fontFamily="@font/comic"
+            android:text="Email : " />
+
         <EditText
+            android:id="@+id/etAddEmail"
+            android:fontFamily="@font/comic"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"/>
+            android:inputType="textEmailAddress"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/rl"
-        android:layout_below="@id/ll2"
-        android:layout_margin="30dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/colorPrimaryDark"/>
+        android:layout_below="@id/ll2"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/colorPrimaryDark" />
 
     <TextView
-        android:layout_below="@id/rl"
-        android:layout_width="100dp"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/tvDaftar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Daftar Teman"/>
+        android:layout_below="@id/rl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Daftar Teman"
+        android:fontFamily="@font/comic"
+        android:textSize="22dp"
+        android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_below="@id/rl"
-        android:layout_above="@id/btadd"
-        android:layout_margin="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btadd"
+        android:layout_below="@id/tvDaftar"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp" />
+
     <Button
         android:id="@+id/btadd"
-        android:text="tambah teman"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+        android:fontFamily="@font/comic"
+        android:textStyle="bold"
+        android:text="tambah teman" />
 
 
 </RelativeLayout>
