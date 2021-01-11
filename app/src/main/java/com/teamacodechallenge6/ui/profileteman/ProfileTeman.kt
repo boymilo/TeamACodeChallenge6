@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 
 class ProfileTeman : AppCompatActivity() {
     private var mDB : TemanDatabase? = null
+    private var recyclerView: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,5 +65,9 @@ class ProfileTeman : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         TemanDatabase.destroyInstance()
+        recyclerView?.layoutManager = LinearLayoutManager(
+            this, LinearLayoutManager.VERTICAL, false)
     }
 }
+
+  

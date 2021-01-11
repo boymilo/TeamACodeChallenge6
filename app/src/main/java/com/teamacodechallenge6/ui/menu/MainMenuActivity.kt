@@ -12,12 +12,14 @@ class MainMenuActivity : AppCompatActivity(), MainMenuView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        presenter = MainMenuPresenterImp(this)
+        presenter?.showUsername()
     }
 
     override fun onSuccess(msg: String) {
         setContentView(R.layout.activity_main)
         val parent by lazy { findViewById<ConstraintLayout>(R.id.main) }
-        val snackbar = Snackbar.make(parent, "Selamat datang", Snackbar.LENGTH_INDEFINITE)
+        val snackbar = Snackbar.make(parent, msg, Snackbar.LENGTH_INDEFINITE)
         snackbar.setAction("Tutup"){
             snackbar.dismiss()
         }.show()
