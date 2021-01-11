@@ -15,10 +15,7 @@ class ProfileTeman : AppCompatActivity() {
         setContentView(R.layout.activity_profile_teman)
         mDB = TemanDatabase.getInstance(this)
 
-
         recyclerView?.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false)
-
-
     }
 }
