@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.R
 import com.teamacodechallenge6.database.Teman
@@ -58,6 +59,7 @@ class ProfileTeman : AppCompatActivity() {
                 listTeman?.let {
                     val adapter = TemanAdapter(listTeman, this@ProfileTeman)
                     recyclerView?.adapter = adapter
+
                 }
             }
         }
