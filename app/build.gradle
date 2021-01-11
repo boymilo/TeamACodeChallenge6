@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+<<<<<<< Updated upstream
+=======
+apply plugin: 'kotlin-kapt'
+>>>>>>> Stashed changes
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -34,4 +38,31 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+<<<<<<< Updated upstream
 }
+=======
+    //lib coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
+    //Room library
+    def room_version = "2.2.6"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    //library view tambahan
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    //library multidex
+    implementation 'com.android.support:multidex:1.0.3'
+
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+
+}
+>>>>>>> Stashed changes
