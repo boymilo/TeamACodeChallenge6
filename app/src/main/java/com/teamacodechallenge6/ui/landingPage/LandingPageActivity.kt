@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
-//import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import com.teamacodechallenge6.R
 import com.teamacodechallenge6.ui.login.LoginActivity
 
@@ -15,22 +15,23 @@ class LandingPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
         val viewpager2 by lazy {this.findViewById<ViewPager2>(R.id.viewpager2)}
-//        val dots_indicator by lazy {this.findViewById<DotsIndicator>(R.id.dots_indicator)}
-//        val btnNext by lazy { this.findViewById<Button>(R.id.btnNext) }
+        val dots_indicator by lazy {this.findViewById<DotsIndicator>(R.id.dots_indicator)}
+        val btnNext by lazy { this.findViewById<Button>(R.id.btnNext) }
         val viewPagerAdapter = ViewPagerAdapter(this) {
             name = it.toString()
         }
         viewpager2.adapter = viewPagerAdapter
-//        dots_indicator.setViewPager2(viewpager2)
 
-//        btnNext.setOnClickListener {
-//            if(viewpager2.currentItem < 1){
-//                viewpager2.currentItem = viewpager2.currentItem.plus(1)
-//            }
-//            else{
-//                startActivity(Intent(this, LoginActivity::class.java))
-//                finish()
-//            }
-//        }
+        dots_indicator.setViewPager2(viewpager2)
+
+        btnNext.setOnClickListener {
+            if(viewpager2.currentItem < 1){
+                viewpager2.currentItem = viewpager2.currentItem.plus(1)
+            }
+            else{
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
+        }
     }
 }

@@ -1,11 +1,16 @@
 package com.teamacodechallenge6.ui.menu
 
+import android.content.Intent
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.snackbar.Snackbar
 import com.teamacodechallenge6.R
+import com.teamacodechallenge6.playGame.MainGameComputer
+import com.teamacodechallenge6.playGame.MainGamePlayer
 import com.teamacodechallenge6.ui.login.LoginPresenter
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainMenuActivity : AppCompatActivity(), MainMenuView {
     private var presenter: MainMenuPresenter? = null
@@ -14,6 +19,14 @@ class MainMenuActivity : AppCompatActivity(), MainMenuView {
         setContentView(R.layout.activity_main)
         presenter = MainMenuPresenterImp(this)
         presenter?.showUsername()
+        ivMenu1.setOnClickListener {
+            startActivity(Intent(this, MainGamePlayer::class.java))
+            finish()
+        }
+        ivMenu2.setOnClickListener{
+            startActivity(Intent(this, MainGameComputer::class.java))
+            finish()
+        }
     }
 
     override fun onSuccess(msg: String) {

@@ -1,5 +1,27 @@
 <resources>
     <string name="app_name">TeamACodeChallenge6</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Kertas Gunting Batu</string>
+    <string name="scissors_icon">gunting computer</string>
+    <string name="player1">Player1</string>
+    <string name="computer">CPU</string>
+    <string name="rock_icon">rock_icon</string>
+    <string name="paper_icon">paper_icon</string>
+    <string name="versus_image">versus_image</string>
+    <string name="refresh_icon">refresh_icon</string>
+    <string name="logo_font">Logo</string>
+    <string name="vs_play">Bermain suit melawan sesama pemain.</string>
+    <string name="vs_comp">Bermain suit melawan komputer.</string>
+    <string name="name_player">Tuliskan namamu di bawah</string>
+    <string name="vs_player">vs Pemain</string>
+    <string name="vs_computer">vs CPU</string>
+    <string name="choose_enemy">PILIH LAWANMU</string>
+    <string name="text_winner">MENANG!</string>
+    <string name="return_play">Main Lagi</string>
+    <string name="back_menu">Kembali Ke Menu</string>
+    <string name="text_result_game">Hasil Permainan</string>
+    <string name="close">close but</string>
+    <string name="Player2">"Player 2"</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mulai_bermain">Mulai Bermain</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
