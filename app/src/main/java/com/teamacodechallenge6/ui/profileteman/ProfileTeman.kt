@@ -1,14 +1,14 @@
 package com.teamacodechallenge6.ui.profileteman
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-
-import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.R
 import com.teamacodechallenge6.database.Teman
 import com.teamacodechallenge6.database.TemanDatabase
+import com.teamacodechallenge6.ui.pilihLawan.PilihLawan
 import kotlinx.android.synthetic.main.activity_profile_teman.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -16,14 +16,13 @@ import kotlinx.coroutines.launch
 
 class ProfileTeman : AppCompatActivity() {
     private var mDB : TemanDatabase? = null
-    private var recyclerView: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_teman)
 
         mDB = TemanDatabase.getInstance(this)
-        recyclerView?.layoutManager = LinearLayoutManager(
+        recyclerView.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false)
         fetchData()
         btadd.setOnClickListener {
@@ -44,6 +43,10 @@ class ProfileTeman : AppCompatActivity() {
             }
         }
 
+        ib_home.setOnClickListener {
+            startActivity(Intent(this, PilihLawan::class.java))
+        }
+
     }
 
     override fun onResume() {
@@ -58,8 +61,7 @@ class ProfileTeman : AppCompatActivity() {
             runOnUiThread {
                 listTeman?.let {
                     val adapter = TemanAdapter(listTeman, this@ProfileTeman)
-                    recyclerView?.adapter = adapter
-
+                    recyclerView.adapter = adapter
                 }
             }
         }
@@ -68,9 +70,5 @@ class ProfileTeman : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         TemanDatabase.destroyInstance()
-        recyclerView?.layoutManager = LinearLayoutManager(
-            this, LinearLayoutManager.VERTICAL, false)
     }
 }
-
-  

@@ -1,5 +1,6 @@
 package com.teamacodechallenge6.ui.login
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,11 +10,13 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.teamacodechallenge6.R
+import com.teamacodechallenge6.database.TemanDatabase
 import com.teamacodechallenge6.ui.menu.MainMenuActivity
 import com.teamacodechallenge6.ui.signup.SignUpActivity
 
 class LoginActivity : AppCompatActivity(), LoginView {
     private var presenter: LoginPresenter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -28,7 +31,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
             .into(logo)
 
         btnLogin.setOnClickListener {
-            presenter?.login(username.text.toString(), password.text.toString())
+//            presenter?.login(username.text.toString(), password.text.toString())
+            presenter?.login(username.text.toString(), password.text.toString(), this@LoginActivity)//coba login dgn database
         }
 
         btnSignUp.setOnClickListener {
