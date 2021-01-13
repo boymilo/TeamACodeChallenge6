@@ -10,8 +10,6 @@ import com.teamacodechallenge6.R
 import com.teamacodechallenge6.database.Teman
 import com.teamacodechallenge6.ui.profileteman.ProfileTeman
 import kotlinx.android.synthetic.main.item_teman.view.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 
 class PilihLawanAdapter(val listTeman: List<Teman>, val context: Context) :
     RecyclerView.Adapter<PilihLawanAdapter.ViewHolder>() {

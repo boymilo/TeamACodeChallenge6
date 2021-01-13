@@ -8,15 +8,12 @@ import com.teamacodechallenge6.App.Companion.mDB
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.teamacodechallenge6.App
 import com.teamacodechallenge6.R
-import com.teamacodechallenge6.database.Teman
 import com.teamacodechallenge6.database.TemanDatabase
 import com.teamacodechallenge6.ui.pilihLawan.PilihLawan
 import kotlinx.android.synthetic.main.activity_profile_teman.*
 import kotlinx.android.synthetic.main.addfriend_dialog.view.*
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class ProfileTeman : AppCompatActivity(), TemanView {
@@ -29,7 +26,7 @@ class ProfileTeman : AppCompatActivity(), TemanView {
         recyclerView.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false
         )
-   /*     fetchData()*/
+        onResume()
         btadd.setOnClickListener {
             val view = LayoutInflater.from(this).inflate(R.layout.addfriend_dialog, null, false)
             val dialogBuilder = AlertDialog.Builder(this).setView(view)
@@ -45,18 +42,16 @@ class ProfileTeman : AppCompatActivity(), TemanView {
                 } else{
                     onFailed()
                 }
-                GlobalScope.launch {
-                    fetchData()
-                }
+            }
+            view.btClose.setOnClickListener{
+                dialogD1.dismiss()
             }
             dialogD1.show()
-
         }
 
         ib_home.setOnClickListener {
             startActivity(Intent(this, PilihLawan::class.java))
         }
-
     }
 
     override fun onResume() {
@@ -65,7 +60,7 @@ class ProfileTeman : AppCompatActivity(), TemanView {
     }
 
     fun fetchData() {
-        GlobalScope.launch {
+        /*GlobalScope.launch {
             val listTeman = mDB?.temanDao()?.getAllTeman()
             runOnUiThread {
                 listTeman?.let {
@@ -73,14 +68,14 @@ class ProfileTeman : AppCompatActivity(), TemanView {
                     recyclerView.adapter = adapter
                 }
             }
-        }
+        }*/
+        presenter?.listTeman(recyclerView, this@ProfileTeman)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        TemanDatabase.destroyInstance()
+        presenter?.DestroyDB()
     }
-
     override fun onSuccess(msg: String) {
         Toast.makeText(
             this@ProfileTeman, "Username berhasil ditambahkan",
@@ -90,7 +85,7 @@ class ProfileTeman : AppCompatActivity(), TemanView {
 
     override fun onFailed() {
         Toast.makeText(
-            this@ProfileTeman, "Password dan Username Salah",
+            this@ProfileTeman, "Password dan Username harus diisi",
             Toast.LENGTH_SHORT
         ).show()
     }
