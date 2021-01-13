@@ -20,7 +20,17 @@ class TemanPresenterImp(private val view: TemanView) : TemanPresenter {
         mDB = context?.let { TemanDatabase.getInstance(it) }
         val objectTeman = Teman(null, name, email)
         GlobalScope.launch {
-            mDB?.temanDao()?.insertTeman(objectTeman)
+           val result=mDB?.temanDao()?.insertTeman(objectTeman)
+            launch {
+                if (result!=0.toLong()){
+                    view.onSuccessAddTeman()
+                    view.onSuccess("Teman kamu berhasil ditambahkan")
+                }
+            }
+
+            /*else{
+                view.onFailedAddTeman()
+            }*/
         }
     }
 
@@ -36,25 +46,6 @@ class TemanPresenterImp(private val view: TemanView) : TemanPresenter {
             }
         }
     }
-
-    override fun deleteTeman(listStudent: List<Teman>) {
-        /*GlobalScope.async {
-            val result = mDB?.temanDao()?.deleteTeman(listTeman[position])
-            (holder.itemView.context as ProfileTeman).runOnUiThread {
-                if (result != 0) {
-                    Toast.makeText(
-                        it.context,
-                        "Data ${listTeman[position].nama} berhasil dihapus",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else Toast.makeText(
-                    it.context,"Data ${listTeman[position].nama} gagal dihapus", Toast.LENGTH_SHORT
-                ).show()
-            }
-            (holder.itemView.context as ProfileTeman).fetchData()
-        }*/
-    }
-
     override fun DestroyDB() {
         TemanDatabase.destroyInstance()
     }
