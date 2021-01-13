@@ -1,13 +1,9 @@
 package com.teamacodechallenge6.ui.profileteman
 
-import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.R
@@ -31,7 +27,7 @@ class TemanAdapter(val listTeman: List<Teman>, val context: Context) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var nama = listTeman[position].nama
+        val nama = listTeman[position].nama
         var email = listTeman[position].email
         holder.itemView.tv_nama.text = nama
         holder.itemView.tv_email.text = email
