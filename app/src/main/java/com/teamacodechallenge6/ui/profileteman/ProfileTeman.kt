@@ -4,17 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import com.teamacodechallenge6.App.Companion.mDB
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teamacodechallenge6.R
-import com.teamacodechallenge6.database.TemanDatabase
 import com.teamacodechallenge6.ui.pilihLawan.PilihLawan
 import kotlinx.android.synthetic.main.activity_profile_teman.*
 import kotlinx.android.synthetic.main.addfriend_dialog.view.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+
 
 class ProfileTeman : AppCompatActivity(), TemanView {
     private var presenter: TemanPresenter? = null
@@ -26,7 +23,7 @@ class ProfileTeman : AppCompatActivity(), TemanView {
         recyclerView.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false
         )
-        onResume()
+        fetchData()
         btadd.setOnClickListener {
             val view = LayoutInflater.from(this).inflate(R.layout.addfriend_dialog, null, false)
             val dialogBuilder = AlertDialog.Builder(this).setView(view)
@@ -37,10 +34,12 @@ class ProfileTeman : AppCompatActivity(), TemanView {
                 val emailTeman = view.etEmail.text.toString()
                 if (namaTeman != "" && emailTeman != "") {
                     presenter?.addTeman(namaTeman,emailTeman)
-                    onSuccess(namaTeman)
                     dialogD1.dismiss()
                 } else{
-                    onFailed()
+                    Toast.makeText(
+                        this@ProfileTeman, "Password dan Username harus diisi",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
             view.btClose.setOnClickListener{
@@ -59,16 +58,7 @@ class ProfileTeman : AppCompatActivity(), TemanView {
         fetchData()
     }
 
-    fun fetchData() {
-        /*GlobalScope.launch {
-            val listTeman = mDB?.temanDao()?.getAllTeman()
-            runOnUiThread {
-                listTeman?.let {
-                    val adapter = TemanAdapter(listTeman, this@ProfileTeman)
-                    recyclerView.adapter = adapter
-                }
-            }
-        }*/
+   fun fetchData() {
         presenter?.listTeman(recyclerView, this@ProfileTeman)
     }
 
@@ -76,18 +66,24 @@ class ProfileTeman : AppCompatActivity(), TemanView {
         super.onDestroy()
         presenter?.DestroyDB()
     }
-    override fun onSuccess(msg: String) {
-        Toast.makeText(
-            this@ProfileTeman, "Username berhasil ditambahkan",
+
+    override fun onSuccessAddTeman() {
+        fetchData()
+
+        /*Toast.makeText(
+            this@ProfileTeman, "Teman kamu berhasil ditambahakan ",
             Toast.LENGTH_SHORT
-        ).show()
+        ).show()*/
     }
 
-    override fun onFailed() {
+    override fun onSuccess(msg:String) {
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
+    }
+  /*  override fun onFailedAddTeman() {
         Toast.makeText(
-            this@ProfileTeman, "Password dan Username harus diisi",
+            this@ProfileTeman, "Teman kamu gagal ditambahakan ",
             Toast.LENGTH_SHORT
         ).show()
-    }
+    }*/
 
 }
