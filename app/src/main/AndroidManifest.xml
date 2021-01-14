@@ -13,15 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.profileteman.ProfileTeman">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.login.LoginActivity"></activity>
         <activity android:name=".ui.landingPage.LandingPageActivity"></activity>
         <activity android:name=".ui.splashScreen.SplashScreenActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".ui.signup.SignUpActivity"></activity>
         <activity android:name=".ui.menu.MainMenuActivity"></activity>
