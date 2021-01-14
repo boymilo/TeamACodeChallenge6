@@ -31,8 +31,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
             .into(logo)
 
         btnLogin.setOnClickListener {
-//            presenter?.login(username.text.toString(), password.text.toString())
-            presenter?.login(username.text.toString(), password.text.toString(), this@LoginActivity)//coba login dgn database
+            presenter?.login(username.text.toString(), password.text.toString(), this@LoginActivity)
         }
 
         btnSignUp.setOnClickListener {
