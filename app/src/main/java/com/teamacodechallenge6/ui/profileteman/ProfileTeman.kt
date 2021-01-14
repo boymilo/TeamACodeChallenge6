@@ -10,7 +10,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teamacodechallenge6.R
 import com.teamacodechallenge6.ui.menu.MainMenuActivity
-import com.teamacodechallenge6.ui.pilihLawan.PilihLawan
 import kotlinx.android.synthetic.main.activity_profile_teman.*
 import kotlinx.android.synthetic.main.addfriend_dialog.view.*
 
