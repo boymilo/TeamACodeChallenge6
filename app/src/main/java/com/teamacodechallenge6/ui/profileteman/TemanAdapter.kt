@@ -29,8 +29,8 @@ class TemanAdapter(val listTeman: List<Teman>, val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val nama = listTeman[position].nama
         var email = listTeman[position].email
-        holder.itemView.tv_nama.text = nama
-        holder.itemView.tv_email.text = email
+        holder.itemView.tvNama.text = nama
+        holder.itemView.tvEmail.text = email
 
         holder.itemView.ivEdit.setOnClickListener {
             val view = LayoutInflater.from(context).inflate(R.layout.dialog_teman, null, false)
@@ -82,7 +82,9 @@ class TemanAdapter(val listTeman: List<Teman>, val context: Context) :
                 }
                 dialog.dismiss()
             }
-
+            view.btClose.setOnClickListener{
+                dialog.dismiss()
+            }
             dialog.show()
         }
     }

@@ -26,8 +26,8 @@ class DaftarPemainAdapter(val listPemain: List<Pemain>, val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var userName = listPemain[position].username
         var email = listPemain[position].email
-        holder.itemView.tv_nama.text = userName
-        holder.itemView.tv_email.text = email
+        holder.itemView.tvNama.text = userName
+        holder.itemView.tvEmail.text = email
 
         holder.itemView.ivEdit.visibility = View.INVISIBLE
 
