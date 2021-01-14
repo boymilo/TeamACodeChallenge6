@@ -21,12 +21,12 @@ class TemanPresenterImp(private val view: TemanView) : TemanPresenter {
         val objectTeman = Teman(null, name, email)
         GlobalScope.launch {
            val result=mDB?.temanDao()?.insertTeman(objectTeman)
-            launch {
-                if (result!=0.toLong()){
-                    view.onSuccessAddTeman()
-                    view.onSuccess("Teman kamu berhasil ditambahkan")
-                }
+            if (result!=0.toLong()){
+                view.onSuccessAddTeman()
             }
+           /* launch {
+
+            }*/
 
             /*else{
                 view.onFailedAddTeman()

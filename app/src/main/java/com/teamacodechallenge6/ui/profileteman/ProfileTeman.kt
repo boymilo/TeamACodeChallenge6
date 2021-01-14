@@ -3,6 +3,7 @@ package com.teamacodechallenge6.ui.profileteman
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -31,18 +32,26 @@ class ProfileTeman : AppCompatActivity(), TemanView {
             dialogD1.setCancelable(false)
             view.btSaveFriend.setOnClickListener {
                 val namaTeman = view.etNama.text.toString()
-                val emailTeman = view.etEmail.text.toString()
-                if (namaTeman != "" && emailTeman != "") {
-                    presenter?.addTeman(namaTeman,emailTeman)
+                val emailTeman = view.etEmail.text.toString().trim()
+                if (namaTeman.isEmpty() && emailTeman.isEmpty()) {
+                    view.etNama.error = "Username harus diisi"
+                    view.etEmail.error = "Email harus diisi"
+                } else if (namaTeman.isEmpty()) {
+                    view.etNama.error = "Username harus diisi"
+                } else if (emailTeman.isEmpty()) {
+                    view.etEmail.error = "Email harus diisi"
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(emailTeman).matches()) {
+                    view.etEmail.error = "Mohon isi email yang benar"
+                } else {
+                    presenter?.addTeman(namaTeman, emailTeman)
                     dialogD1.dismiss()
-                } else{
                     Toast.makeText(
-                        this@ProfileTeman, "Password dan Username harus diisi",
+                        this@ProfileTeman, "Teman kamu $namaTeman berhasil ditambahakan ",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             }
-            view.btClose.setOnClickListener{
+            view.btClose.setOnClickListener {
                 dialogD1.dismiss()
             }
             dialogD1.show()
@@ -58,7 +67,7 @@ class ProfileTeman : AppCompatActivity(), TemanView {
         fetchData()
     }
 
-   fun fetchData() {
+    fun fetchData() {
         presenter?.listTeman(recyclerView, this@ProfileTeman)
     }
 
@@ -69,21 +78,8 @@ class ProfileTeman : AppCompatActivity(), TemanView {
 
     override fun onSuccessAddTeman() {
         fetchData()
-
-        /*Toast.makeText(
-            this@ProfileTeman, "Teman kamu berhasil ditambahakan ",
-            Toast.LENGTH_SHORT
-        ).show()*/
     }
 
-    override fun onSuccess(msg:String) {
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
-    }
-  /*  override fun onFailedAddTeman() {
-        Toast.makeText(
-            this@ProfileTeman, "Teman kamu gagal ditambahakan ",
-            Toast.LENGTH_SHORT
-        ).show()
-    }*/
+
 
 }

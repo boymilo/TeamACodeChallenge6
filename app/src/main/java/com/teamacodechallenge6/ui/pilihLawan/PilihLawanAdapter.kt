@@ -26,8 +26,8 @@ class PilihLawanAdapter(val listTeman: List<Teman>, val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var nama = listTeman[position].nama
         var email = listTeman[position].email
-        holder.itemView.tv_nama.text = nama
-        holder.itemView.tv_email.text = email
+        holder.itemView.tvNama.text = nama
+        holder.itemView.tvEmail.text = email
 
         holder.itemView.ivEdit.visibility = View.INVISIBLE
 
