@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.R
 import com.teamacodechallenge6.database.Teman
 import com.teamacodechallenge6.ui.profileteman.ProfileTeman
+import com.teamacodechallenge6.ui.profileteman.TemanPresenterImp
 import kotlinx.android.synthetic.main.item_teman.view.*
 
 class PilihLawanAdapter(val listTeman: List<Teman>, val context: Context) :
@@ -26,6 +27,7 @@ class PilihLawanAdapter(val listTeman: List<Teman>, val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var nama = listTeman[position].nama
         var email = listTeman[position].email
+
         holder.itemView.tvNama.text = nama
         holder.itemView.tvEmail.text = email
 
