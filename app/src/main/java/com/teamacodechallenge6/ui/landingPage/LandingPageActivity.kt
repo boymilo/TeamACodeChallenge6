@@ -21,6 +21,7 @@ class LandingPageActivity : AppCompatActivity() {
             name = it.toString()
         }
         viewpager2.adapter = viewPagerAdapter
+
         dots_indicator.setViewPager2(viewpager2)
 
         btnNext.setOnClickListener {

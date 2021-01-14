@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gl1"
         app:progressMode="true"
-        app:selectedDotColor="@color/md_blue_200" />
+            app:selectedDotColor="@color/md_blue_200" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl1"
@@ -51,5 +51,6 @@
         android:textColor="@color/white"
         android:background="@color/md_blue_200"
         app:layout_constraintTop_toBottomOf="@id/gl1" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.teamacodechallenge6.ui.login
 
+import android.content.Context
+
 interface LoginPresenter {
-    fun login(username: String, password: String)
-    fun checkIsLogin(): Boolean
+    fun login(username: String, password: String, context: Context)
 }
