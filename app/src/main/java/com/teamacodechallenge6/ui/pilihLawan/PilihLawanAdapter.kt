@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.R
 import com.teamacodechallenge6.database.Teman
 import com.teamacodechallenge6.ui.profileteman.ProfileTeman
-import com.teamacodechallenge6.ui.profileteman.TemanPresenterImp
 import kotlinx.android.synthetic.main.item_teman.view.*
 
 class PilihLawanAdapter(val listTeman: List<Teman>, val context: Context) :
