@@ -42,22 +42,12 @@ class TemanAdapter(private val listTeman: List<Teman>, val context: Context) :
                 listTeman[position].email = view.etEmail.text.toString()
                 presenter = TemanPresenterImp(this)
                 presenter?.editTeman(listTeman, position)
-                Toast.makeText(
-                    it.context,
-                    "Sukses mengubah ${listTeman[position].nama} ",
-                    Toast.LENGTH_SHORT
-                ).show()
                 dialog.dismiss()
             }
 
             view.ibDelete.setOnClickListener {
                 presenter = TemanPresenterImp(this)
                 presenter?.deleteTeman(listTeman, position)
-                Toast.makeText(
-                    it.context,
-                    "Data ${listTeman[position].nama} berhasil dihapus",
-                    Toast.LENGTH_SHORT
-                ).show()
                 dialog.dismiss()
             }
             view.btClose.setOnClickListener {
@@ -71,8 +61,14 @@ class TemanAdapter(private val listTeman: List<Teman>, val context: Context) :
         return listTeman.size
     }
 
-    override fun onSuccessAddTeman() {
+    override fun onSuccessTeman(msg:String) {
         (context as ProfileTeman).fetchData()
+        Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
+
+    }
+
+    override fun onFailedTeman(msg: String) {
+        Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
     }
 
 

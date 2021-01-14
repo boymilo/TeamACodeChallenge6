@@ -45,10 +45,7 @@ class ProfileTeman : AppCompatActivity(), TemanView {
                 } else {
                     presenter?.addTeman(namaTeman, emailTeman)
                     dialogD1.dismiss()
-                    Toast.makeText(
-                        this@ProfileTeman, "Teman kamu $namaTeman berhasil ditambahakan ",
-                        Toast.LENGTH_SHORT
-                    ).show()
+
                 }
             }
             view.btClose.setOnClickListener {
@@ -75,8 +72,19 @@ class ProfileTeman : AppCompatActivity(), TemanView {
         presenter?.DestroyDB()
     }
 
-    override fun onSuccessAddTeman() {
+    override fun onSuccessTeman(msg:String) {
         fetchData()
+        Toast.makeText(
+            this@ProfileTeman, msg,
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    override fun onFailedTeman(msg: String) {
+        Toast.makeText(
+            this@ProfileTeman, msg,
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
 
