@@ -1,20 +1,34 @@
 package com.teamacodechallenge6.ui.signup
 
+import android.content.Context
 import com.teamacodechallenge6.App
+import com.teamacodechallenge6.App.Companion.context
+import com.teamacodechallenge6.App.Companion.mDB
 import com.teamacodechallenge6.data.local.SharedPref
-import com.teamacodechallenge6.data.model.Users
 import com.teamacodechallenge6.database.Pemain
+import com.teamacodechallenge6.database.Teman
 import com.teamacodechallenge6.database.TemanDatabase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class SignUpPresenterImp(private val view: SignUpView): SignUpPresenter{
     override fun signUp(username: String, password: String, email: String) {
-        val pemain = Pemain(null,username, password, email)
-        App.mDB = App.context?.let { TemanDatabase.getInstance(it) }
-        GlobalScope.launch {
-            App.mDB?.pemainDao()?.insertPemain(pemain)
+        mDB = context?.let { TemanDatabase.getInstance(it) }
+        val pemainBaru = Pemain(null, username, password, email)
+        GlobalScope.launch(Dispatchers.IO) {
+            val checker = mDB?.pemainDao()?.getPemainByUsername(username)
+            if(checker == null){
+                mDB?.pemainDao()?.insertPemain(pemainBaru)
+            }
+            launch(Dispatchers.Main) {
+                if (checker == null){
+                    view.onSuccess()
+                }
+                else{
+                    view.onError("Username telah digunakan")
+                }
+            }
         }
-        view.onSuccess()
     }
 }

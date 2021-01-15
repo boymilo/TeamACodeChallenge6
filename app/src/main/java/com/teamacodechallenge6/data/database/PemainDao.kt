@@ -9,7 +9,10 @@ interface PemainDao {
     fun getAllPemain(): List<Pemain>
 
     @Query("SELECT * FROM Pemain WHERE username = :username OR email = :username")
-    fun getPemain(username:String): Pemain
+    fun getPemainByUsername(username:String): Pemain
+
+    @Query("SELECT * FROM Pemain WHERE id = :id")
+    fun getPemainById(id: Int): Pemain
 
     @Insert(onConflict = REPLACE)
     fun insertPemain(pemain:Pemain):Long
