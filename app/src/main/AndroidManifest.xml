@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.signup.SignUpActivity"></activity>
-        <activity android:name=".ui.menu.MainMenuActivity"></activity>
+        <activity android:name=".ui.signup.SignUpActivity" />
+        <activity android:name=".ui.menu.MainMenuActivity" />
         <activity android:name=".playGame.MainGamePlayer"></activity>
         <activity android:name=".playGame.MainGameComputer"></activity>
     </application>

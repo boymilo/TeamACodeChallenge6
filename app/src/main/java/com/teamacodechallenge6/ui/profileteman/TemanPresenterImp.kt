@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.App
 import com.teamacodechallenge6.App.Companion.context
 import com.teamacodechallenge6.App.Companion.mDB
+import com.teamacodechallenge6.data.local.SharedPref
 import com.teamacodechallenge6.database.Teman
 import com.teamacodechallenge6.database.TemanDatabase
 import kotlinx.coroutines.Dispatchers
@@ -12,6 +13,18 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class TemanPresenterImp(private val view: TemanView) : TemanPresenter {
+    override fun playerName() {
+        mDB = context?.let { TemanDatabase.getInstance(it) }
+        GlobalScope.launch(Dispatchers.IO){
+            val pemain = SharedPref.id?.let { mDB?.pemainDao()?.getPemainById(it) }
+            launch(Dispatchers.Main) {
+                val username = pemain?.username.toString()
+                val email=pemain?.email.toString()
+                view.nameEmail(username,email)
+            }
+        }
+    }
+
     override fun addTeman(name: String, email: String) {
         mDB = context?.let { TemanDatabase.getInstance(it) }
         val objectTeman = Teman(null, name, email)
