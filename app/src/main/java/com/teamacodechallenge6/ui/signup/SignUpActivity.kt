@@ -34,8 +34,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
                 var username1 = username.text.toString()
                 var password1 = password.text.toString()
                 var email1 = email.text.toString()
-
-                Toast.makeText(this, "User berhasil didaftarkan", Toast.LENGTH_SHORT).show()
             }
             else {
                 Toast.makeText(this, "Password tidak sama", Toast.LENGTH_SHORT).show()
@@ -52,7 +50,12 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
     }
 
     override fun onSuccess() {
+        Toast.makeText(this, "User berhasil didaftarkan", Toast.LENGTH_SHORT).show()
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
+    }
+
+    override fun onError(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 }

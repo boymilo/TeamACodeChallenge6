@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
             .into(logo)
 
         btnLogin.setOnClickListener {
-            presenter?.login(username.text.toString(), password.text.toString(), this@LoginActivity)
+            presenter?.login(username.text.toString(), password.text.toString())
         }
 
         btnSignUp.setOnClickListener {
