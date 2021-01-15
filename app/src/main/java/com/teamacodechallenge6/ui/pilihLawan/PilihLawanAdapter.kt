@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.R
 import com.teamacodechallenge6.database.Teman
+import com.teamacodechallenge6.playGame.MainGamePlayer
 import com.teamacodechallenge6.ui.profileteman.ProfileTeman
 import kotlinx.android.synthetic.main.item_teman.view.*
 
@@ -33,7 +34,7 @@ class PilihLawanAdapter(val listTeman: List<Teman>, val context: Context) :
         holder.itemView.ivEdit.visibility = View.INVISIBLE
 
         holder.itemView.setOnClickListener {
-            var intent = Intent (context, ProfileTeman::class.java)
+            var intent = Intent (context, MainGamePlayer::class.java)
             intent.putExtra("nama", nama)
             context.startActivity(intent)
         }

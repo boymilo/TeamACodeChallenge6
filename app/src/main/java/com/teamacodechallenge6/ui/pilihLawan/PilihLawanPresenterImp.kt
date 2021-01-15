@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.database.TemanDatabase
 import kotlinx.android.synthetic.main.activity_profile_teman.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -19,10 +20,10 @@ class PilihLawanPresenterImp(private val view: PilihLawan): PilihLawanPresenter{
         var mDB = TemanDatabase.getInstance(context)
         recyclerView.layoutManager = LinearLayoutManager(
             context, LinearLayoutManager.VERTICAL, false)
-        GlobalScope.launch {
+        GlobalScope.launch (Dispatchers.IO){
             val listTeman = mDB?.temanDao()?.getAllTeman()
 
-            (context as PilihLawan).runOnUiThread {
+            launch (Dispatchers.Main){
                 listTeman?.let {
                     val adapter = PilihLawanAdapter(listTeman, context)
                     recyclerView.adapter = adapter
