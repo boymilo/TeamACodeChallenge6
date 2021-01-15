@@ -9,7 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teamacodechallenge6.R
-import com.teamacodechallenge6.ui.pilihLawan.PilihLawan
+import com.teamacodechallenge6.playGame.MainGamePlayer
+import com.teamacodechallenge6.ui.menu.MainMenuActivity
 import kotlinx.android.synthetic.main.activity_profile_teman.*
 import kotlinx.android.synthetic.main.addfriend_dialog.view.*
 
@@ -45,10 +46,7 @@ class ProfileTeman : AppCompatActivity(), TemanView {
                 } else {
                     presenter?.addTeman(namaTeman, emailTeman)
                     dialogD1.dismiss()
-                    Toast.makeText(
-                        this@ProfileTeman, "Teman kamu $namaTeman berhasil ditambahakan ",
-                        Toast.LENGTH_SHORT
-                    ).show()
+
                 }
             }
             view.btClose.setOnClickListener {
@@ -56,9 +54,8 @@ class ProfileTeman : AppCompatActivity(), TemanView {
             }
             dialogD1.show()
         }
-
         ib_home.setOnClickListener {
-            startActivity(Intent(this, PilihLawan::class.java))
+            startActivity(Intent(this, MainMenuActivity::class.java))
         }
     }
 
@@ -76,8 +73,24 @@ class ProfileTeman : AppCompatActivity(), TemanView {
         presenter?.DestroyDB()
     }
 
-    override fun onSuccessAddTeman() {
+    override fun onSuccessTeman(msg:String) {
         fetchData()
+        Toast.makeText(
+            this@ProfileTeman, msg,
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    override fun onFailedTeman(msg: String) {
+        Toast.makeText(
+            this@ProfileTeman, msg,
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainMenuActivity::class.java))
+        finish()
     }
 
 

@@ -11,6 +11,7 @@ import com.teamacodechallenge6.data.local.SharedPref
 import com.teamacodechallenge6.playGame.MainGameComputer
 import com.teamacodechallenge6.playGame.MainGamePlayer
 import com.teamacodechallenge6.ui.login.LoginPresenter
+import com.teamacodechallenge6.ui.profileteman.ProfileTeman
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainMenuActivity : AppCompatActivity(), MainMenuView {
@@ -26,6 +27,10 @@ class MainMenuActivity : AppCompatActivity(), MainMenuView {
         }
         ivMenu2.setOnClickListener{
             startActivity(Intent(this, MainGameComputer::class.java))
+            finish()
+        }
+        ivMenu3.setOnClickListener{
+            startActivity(Intent(this, ProfileTeman::class.java))
             finish()
         }
     }

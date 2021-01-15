@@ -1,44 +1,39 @@
 package com.teamacodechallenge6.ui.profileteman
 
 import android.content.Context
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.App
 import com.teamacodechallenge6.App.Companion.context
 import com.teamacodechallenge6.App.Companion.mDB
 import com.teamacodechallenge6.database.Teman
 import com.teamacodechallenge6.database.TemanDatabase
-import com.teamacodechallenge6.ui.pilihLawan.PilihLawan
-import com.teamacodechallenge6.ui.pilihLawan.PilihLawanAdapter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class TemanPresenterImp(private val view: TemanView) : TemanPresenter {
     override fun addTeman(name: String, email: String) {
         mDB = context?.let { TemanDatabase.getInstance(it) }
         val objectTeman = Teman(null, name, email)
-        GlobalScope.launch {
+        GlobalScope.launch(Dispatchers.IO) {
            val result=mDB?.temanDao()?.insertTeman(objectTeman)
-            if (result!=0.toLong()){
-                view.onSuccessAddTeman()
+            launch(Dispatchers.Main) {
+                if (result!=0.toLong()){
+                    view.onSuccessTeman("Teman kamu $name berhasil ditambahakan")
+                }
+                else{
+                    view.onFailedTeman("Teman kamu $name gagal ditambahakan")
+                }
             }
-           /* launch {
 
-            }*/
-
-            /*else{
-                view.onFailedAddTeman()
-            }*/
         }
     }
 
     override fun listTeman(recyclerView: RecyclerView, context: Context) {
         mDB = App.context?.let { TemanDatabase.getInstance(it) }
-        GlobalScope.launch {
+        GlobalScope.launch (Dispatchers.IO){
             val listTeman = mDB?.temanDao()?.getAllTeman()
-            (context as ProfileTeman).runOnUiThread {
+            launch(Dispatchers.Main){
                 listTeman?.let {
                     val adapter = TemanAdapter(listTeman, context)
                     recyclerView.adapter = adapter
@@ -46,6 +41,33 @@ class TemanPresenterImp(private val view: TemanView) : TemanPresenter {
             }
         }
     }
+
+    override fun deleteTeman(list: List<Teman>,position:Int) {
+        GlobalScope.launch (Dispatchers.IO){
+           val result= mDB?.temanDao()?.deleteTeman(list[position])
+            launch (Dispatchers.Main){
+                if (result != 0) {
+                    view.onSuccessTeman("Teman kamu berhasil dihapus")
+                } else {
+                    view.onFailedTeman("Teman kamu gagal dihapus")
+                }
+            }
+        }
+    }
+
+    override fun editTeman(list: List<Teman>, position: Int) {
+        GlobalScope.launch (Dispatchers.IO){
+            val result= mDB?.temanDao()?.updateTeman(list[position])
+            launch(Dispatchers.Main) {
+                if (result != 0) {
+                    view.onSuccessTeman("Teman kamu berhasil diubah")
+                } else {
+                    view.onSuccessTeman("Teman kamu gagal diubah")
+                }
+            }
+        }
+    }
+
     override fun DestroyDB() {
         TemanDatabase.destroyInstance()
     }
