@@ -15,12 +15,13 @@ import com.teamacodechallenge6.ui.profileteman.ProfileTeman
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainMenuActivity : AppCompatActivity(), MainMenuView {
-    private var presenter: MainMenuPresenter? = null
+    private lateinit var presenter: MainMenuPresenter
+    val parent: ConstraintLayout by lazy { findViewById(R.id.main) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         presenter = MainMenuPresenterImp(this)
-        presenter?.showUsername()
+        presenter.showUsername()
         ivMenu1.setOnClickListener {
             startActivity(Intent(this, MainGamePlayer::class.java))
             finish()
@@ -36,11 +37,13 @@ class MainMenuActivity : AppCompatActivity(), MainMenuView {
     }
 
     override fun onSuccess(msg: String) {
-        setContentView(R.layout.activity_main)
-        val parent by lazy { findViewById<ConstraintLayout>(R.id.main) }
         val snackbar = Snackbar.make(parent, msg, Snackbar.LENGTH_INDEFINITE)
         snackbar.setAction("Tutup"){
             snackbar.dismiss()
         }.show()
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }

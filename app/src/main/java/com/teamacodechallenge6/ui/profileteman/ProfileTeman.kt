@@ -16,15 +16,15 @@ import kotlinx.android.synthetic.main.addfriend_dialog.view.*
 
 
 class ProfileTeman : AppCompatActivity(), TemanView {
-    private var presenter: TemanPresenter? = null
+    private lateinit var presenter: TemanPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_teman)
         presenter = TemanPresenterImp(this)
-
         recyclerView.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false
         )
+        presenter.playerName()
         fetchData()
         btadd.setOnClickListener {
             val view = LayoutInflater.from(this).inflate(R.layout.addfriend_dialog, null, false)
@@ -44,7 +44,7 @@ class ProfileTeman : AppCompatActivity(), TemanView {
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(emailTeman).matches()) {
                     view.etEmail.error = "Mohon isi email yang benar"
                 } else {
-                    presenter?.addTeman(namaTeman, emailTeman)
+                    presenter.addTeman(namaTeman, emailTeman)
                     dialogD1.dismiss()
 
                 }
@@ -65,12 +65,12 @@ class ProfileTeman : AppCompatActivity(), TemanView {
     }
 
     fun fetchData() {
-        presenter?.listTeman(recyclerView, this@ProfileTeman)
+        presenter.listTeman(recyclerView, this@ProfileTeman)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter?.DestroyDB()
+        presenter.DestroyDB()
     }
 
     override fun onSuccessTeman(msg:String) {
@@ -86,6 +86,11 @@ class ProfileTeman : AppCompatActivity(), TemanView {
             this@ProfileTeman, msg,
             Toast.LENGTH_SHORT
         ).show()
+    }
+
+    override fun nameEmail(username: String, email: String) {
+        tvNamePlayer.text=username
+        tvEmailPlayer.text=email
     }
 
     override fun onBackPressed() {

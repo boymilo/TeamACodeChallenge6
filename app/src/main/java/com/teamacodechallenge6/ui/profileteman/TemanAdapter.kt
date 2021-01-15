@@ -71,5 +71,6 @@ class TemanAdapter(private val listTeman: List<Teman>, val context: Context) :
         Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
     }
 
+    override fun nameEmail(username: String, email: String) {}
 
 }
