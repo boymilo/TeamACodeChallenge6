@@ -1,4 +1,4 @@
-package com.teamacodechallenge6.playGame
+package com.teamacodechallenge6.ui.playGame
 
 import android.util.Log
 import com.teamacodechallenge6.data.local.SharedPref
@@ -10,8 +10,7 @@ class MainGamePresenterImp(private val listener: MainGamePresenter) {
     private var compRandData = dataCompRand.random()
 
     fun getUsername(): String {
-        val username = SharedPref.username!!
-        return username
+        return SharedPref.username!!
     }
 
     fun setDataPlayer(dataPlayer: Gameplay) {

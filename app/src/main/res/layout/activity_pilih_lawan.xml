@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,7 +16,8 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
-        android:src="@drawable/ic_home" />
+        android:src="@drawable/ic_home"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/tvDaftar"
@@ -27,7 +27,7 @@
         android:layout_marginTop="35dp"
         android:fontFamily="@font/comic"
         android:text="Daftar Teman"
-        android:textSize="26dp"
+        android:textSize="26sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView

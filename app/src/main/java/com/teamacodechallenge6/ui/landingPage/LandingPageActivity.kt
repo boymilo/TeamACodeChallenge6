@@ -15,14 +15,14 @@ class LandingPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
         val viewpager2 by lazy {this.findViewById<ViewPager2>(R.id.viewpager2)}
-        val dots_indicator by lazy {this.findViewById<DotsIndicator>(R.id.dots_indicator)}
+        val dotsIndicator by lazy {this.findViewById<DotsIndicator>(R.id.dots_indicator)}
         val btnNext by lazy { this.findViewById<Button>(R.id.btnNext) }
         val viewPagerAdapter = ViewPagerAdapter(this) {
             name = it.toString()
         }
         viewpager2.adapter = viewPagerAdapter
 
-        dots_indicator.setViewPager2(viewpager2)
+        dotsIndicator.setViewPager2(viewpager2)
 
         btnNext.setOnClickListener {
             if(viewpager2.currentItem < 1){

@@ -1,4 +1,4 @@
-package com.teamacodechallenge6.database
+package com.teamacodechallenge6.data.database
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

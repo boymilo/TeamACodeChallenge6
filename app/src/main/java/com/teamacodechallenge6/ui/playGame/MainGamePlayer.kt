@@ -1,4 +1,4 @@
-package com.teamacodechallenge6.playGame
+package com.teamacodechallenge6.ui.playGame
 
 import android.content.Intent
 import android.os.Bundle
@@ -16,20 +16,17 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.teamacodechallenge6.R
-import com.teamacodechallenge6.data.local.SharedPref
-import com.teamacodechallenge6.database.TemanDatabase
 import com.teamacodechallenge6.ui.menu.MainMenuActivity
 import kotlinx.android.synthetic.main.activity_maingame.*
 
 
 class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
     private val imgLogo = "https://i.ibb.co/HC5ZPgD/splash-screen1.png"
-    private var mDB : TemanDatabase? = null
 
     private var dataPlayer1 = ""
     private var dataPlayer2 = ""
 
-    private val layoutImage: ConstraintLayout by lazy { findViewById<ConstraintLayout>(R.id.activity_maingame) }
+    private val layoutImage: ConstraintLayout by lazy { findViewById(R.id.activity_maingame) }
 
     private val resetFun by lazy {
         findViewById<ImageView>(R.id.imageBattle)
@@ -86,7 +83,7 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
             imageButton.setOnClickListener {
                 when (it) {
                     buttonAll[0] -> {
-                        if (!(backgroundAll[0].visibility == View.VISIBLE)) {
+                        if (backgroundAll[0].visibility != View.VISIBLE) {
                             buttonAll[0].startAnimation(animation)
                             backgroundAll[0].visibility = View.VISIBLE
 
@@ -94,35 +91,35 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
                         dataPlayer1 = "batu"
                     }
                     buttonAll[1] -> {
-                        if (!(backgroundAll[1].visibility == View.VISIBLE)) {
+                        if (backgroundAll[1].visibility != View.VISIBLE) {
                             buttonAll[1].startAnimation(animation)
                             backgroundAll[1].visibility = View.VISIBLE
                         }
                         dataPlayer1 = "gunting"
                     }
                     buttonAll[2] -> {
-                        if (!(backgroundAll[2].visibility == View.VISIBLE)) {
+                        if (backgroundAll[2].visibility != View.VISIBLE) {
                             buttonAll[2].startAnimation(animation)
                             backgroundAll[2].visibility = View.VISIBLE
                         }
                         dataPlayer1 = "kertas"
                     }
                     buttonAll[3] -> {
-                        if (!(backgroundAll[3].visibility == View.VISIBLE)) {
+                        if (backgroundAll[3].visibility != View.VISIBLE) {
                             buttonAll[3].startAnimation(animation)
                             backgroundAll[3].visibility = View.VISIBLE
                         }
                         dataPlayer2 = "batu"
                     }
                     buttonAll[4] -> {
-                        if (!(backgroundAll[4].visibility == View.VISIBLE)) {
+                        if (backgroundAll[4].visibility != View.VISIBLE) {
                             buttonAll[4].startAnimation(animation)
                             backgroundAll[4].visibility = View.VISIBLE
                         }
                         dataPlayer2 = "gunting"
                     }
                     else -> {
-                        if (!(backgroundAll[5].visibility == View.VISIBLE)) {
+                        if (backgroundAll[5].visibility != View.VISIBLE) {
                             buttonAll[5].startAnimation(animation)
                             backgroundAll[5].visibility = View.VISIBLE
                         }
@@ -152,7 +149,7 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
 
     //Pemrosesan Data
     private fun dataModel() {
-        val dataMauPlayer = dataPlayer1?.let { Gameplay(it, dataPlayer2, "vsPlayer") }
+        val dataMauPlayer = Gameplay(dataPlayer1, dataPlayer2, "vsPlayer")
         Log.i("MainGamePlayer", "Proses Suit Pemain vs Pemain")
         if (dataMauPlayer != null) {
             controller.setDataPlayer(dataMauPlayer)

@@ -1,4 +1,4 @@
-package com.teamacodechallenge6.database
+package com.teamacodechallenge6.data.database
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
@@ -15,12 +15,12 @@ interface PemainDao {
     fun getPemainById(id: Int): Pemain
 
     @Insert(onConflict = REPLACE)
-    fun insertPemain(pemain:Pemain):Long
+    fun insertPemain(pemain: Pemain):Long
 
     @Update
-    fun updatePemain(pemain:Pemain):Int
+    fun updatePemain(pemain: Pemain):Int
 
     @Delete
-    fun deletePemain(pemain:Pemain):Int
+    fun deletePemain(pemain: Pemain):Int
 
 }

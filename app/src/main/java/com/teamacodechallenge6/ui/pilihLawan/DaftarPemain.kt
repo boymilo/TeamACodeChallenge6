@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teamacodechallenge6.R
-import com.teamacodechallenge6.database.TemanDatabase
+import com.teamacodechallenge6.data.database.TemanDatabase
 import kotlinx.android.synthetic.main.activity_pilih_lawan.*
 import kotlinx.android.synthetic.main.activity_profile_teman.*
 import kotlinx.android.synthetic.main.activity_profile_teman.recyclerView
@@ -19,7 +19,7 @@ class DaftarPemain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pilih_lawan)
 
-        tvDaftar.setText("Daftar Pemain")
+        tvDaftar.text = ("Daftar Pemain")
         mDB = TemanDatabase.getInstance(this)
         recyclerView.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false)
@@ -31,7 +31,7 @@ class DaftarPemain : AppCompatActivity() {
         fetchData()
     }
 
-    fun fetchData(){
+    private fun fetchData(){
         GlobalScope.launch {
             val listPemain = mDB?.pemainDao()?.getAllPemain()
             runOnUiThread {

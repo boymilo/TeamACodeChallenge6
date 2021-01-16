@@ -1,13 +1,9 @@
 package com.teamacodechallenge6.ui.signup
 
-import android.content.Context
-import com.teamacodechallenge6.App
 import com.teamacodechallenge6.App.Companion.context
 import com.teamacodechallenge6.App.Companion.mDB
-import com.teamacodechallenge6.data.local.SharedPref
-import com.teamacodechallenge6.database.Pemain
-import com.teamacodechallenge6.database.Teman
-import com.teamacodechallenge6.database.TemanDatabase
+import com.teamacodechallenge6.data.database.Pemain
+import com.teamacodechallenge6.data.database.TemanDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

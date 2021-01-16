@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundAll"
     android:orientation="vertical"
-    tools:context=".playGame.MainGameComputer">
+    tools:context=".ui.playGame.MainGameComputer">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_top"

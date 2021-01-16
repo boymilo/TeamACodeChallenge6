@@ -1,4 +1,4 @@
-package com.teamacodechallenge6.playGame
+package com.teamacodechallenge6.ui.playGame
 
 import android.content.Intent
 import android.os.Bundle
@@ -16,7 +16,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.teamacodechallenge6.R
-import com.teamacodechallenge6.data.local.SharedPref
 import com.teamacodechallenge6.ui.menu.MainMenuActivity
 import kotlinx.android.synthetic.main.activity_maingame.*
 
@@ -24,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_maingame.*
 class MainGameComputer : AppCompatActivity(), MainGamePresenter {
     private val imgLogo = "https://i.ibb.co/HC5ZPgD/splash-screen1.png"
     private var dataPlayer1 = ""
-    private val layoutImage: ConstraintLayout by lazy { findViewById<ConstraintLayout>(R.id.activity_maingame) }
+    private val layoutImage: ConstraintLayout by lazy { findViewById(R.id.activity_maingame) }
     private val resetFun by lazy {
         findViewById<ImageView>(R.id.imageBattle)
     }
@@ -49,9 +48,6 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
             findViewById<TextView>(R.id.player1),
             findViewById(R.id.player2)
         )
-    }
-    private val intentNya by lazy {
-        Intent(this@MainGameComputer, MainMenuActivity::class.java)
     }
     private val controller = MainGamePresenterImp(this)
     private val randDuration = 1000L
@@ -78,7 +74,7 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
             imageButton.setOnClickListener {
                 when (it) {
                     buttonAll[0] -> {
-                        if (!(backgroundAll[0].visibility == View.VISIBLE)) {
+                        if (backgroundAll[0].visibility != View.VISIBLE) {
                             buttonAll[0].startAnimation(animation)
                             backgroundAll[0].visibility = View.VISIBLE
 
@@ -86,14 +82,14 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
                         dataPlayer1 = "batu"
                     }
                     buttonAll[1] -> {
-                        if (!(backgroundAll[1].visibility == View.VISIBLE)) {
+                        if (backgroundAll[1].visibility != View.VISIBLE) {
                             buttonAll[1].startAnimation(animation)
                             backgroundAll[1].visibility = View.VISIBLE
                         }
                         dataPlayer1 = "gunting"
                     }
                     else -> {
-                        if (!(backgroundAll[2].visibility == View.VISIBLE)) {
+                        if (backgroundAll[2].visibility != View.VISIBLE) {
                             buttonAll[2].startAnimation(animation)
                             backgroundAll[2].visibility = View.VISIBLE
                         }
@@ -139,7 +135,7 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
 
     //Pemrosesan Data
     private fun dataModel() {
-        val dataMauPlayer = dataPlayer1?.let { Gameplay(it, "", "vsCPU") }
+        val dataMauPlayer = Gameplay(dataPlayer1, "", "vsCPU")
         Log.i("MainGameComputer", "Proses Suit Computer vs Pemain")
         if (dataMauPlayer != null) {
             controller.setDataPlayer(dataMauPlayer)

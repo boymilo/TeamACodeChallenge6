@@ -1,4 +1,4 @@
-package com.teamacodechallenge6.playGame
+package com.teamacodechallenge6.ui.playGame
 
 interface MainGamePresenter {
     fun resultEnemy(resultEnemy:String)

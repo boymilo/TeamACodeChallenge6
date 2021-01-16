@@ -7,16 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.R
-import com.teamacodechallenge6.database.Pemain
+import com.teamacodechallenge6.data.database.Pemain
 import com.teamacodechallenge6.ui.profileteman.ProfileTeman
 import kotlinx.android.synthetic.main.item_teman.view.*
 
-class DaftarPemainAdapter(val listPemain: List<Pemain>, val context: Context) :
+class DaftarPemainAdapter(private val listPemain: List<Pemain>, val context: Context) :
     RecyclerView.Adapter<DaftarPemainAdapter.ViewHolder>() {
 
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    }
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_teman, parent, false)
@@ -24,15 +23,15 @@ class DaftarPemainAdapter(val listPemain: List<Pemain>, val context: Context) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var userName = listPemain[position].username
-        var email = listPemain[position].email
+        val userName = listPemain[position].username
+        val email = listPemain[position].email
         holder.itemView.tvNama.text = userName
         holder.itemView.tvEmail.text = email
 
         holder.itemView.ivEdit.visibility = View.INVISIBLE
 
         holder.itemView.setOnClickListener {
-            var intent = Intent (context, ProfileTeman::class.java)
+            val intent = Intent (context, ProfileTeman::class.java)
             intent.putExtra("nama", userName)
             context.startActivity(intent)
         }

@@ -1,20 +1,20 @@
-package com.teamacodechallenge6.database
+package com.teamacodechallenge6.data.database
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
 
 @Dao
 interface TemanDao {
-    @Query("SELECT * FROM Teman")
-    fun getAllTeman(): List<Teman>
 
+    @Query("SELECT * FROM Teman WHERE idplayer=:idplayer")
+    fun getAllbyId(idplayer:Int): List<Teman>
     @Insert(onConflict = REPLACE)
-    fun insertTeman(teman:Teman):Long
+    fun insertTeman(teman: Teman):Long
 
     @Update
-    fun updateTeman(teman:Teman):Int
+    fun updateTeman(teman: Teman):Int
 
     @Delete
-    fun deleteTeman(teman:Teman):Int
+    fun deleteTeman(teman: Teman):Int
 
 }
