@@ -20,13 +20,14 @@ class LoginPresenterImp(private val view: LoginView) : LoginPresenter {
 
             launch(Dispatchers.Main) {
                 if (pemain == null) {
-                    view.onError("username belum terdaftar")
+                    view.onError("Username belum terdaftar")
                 } else {
                     var passwordDB = pemain.password
                     if (password != passwordDB)
-                        view.onError("password salah")
+                        view.onError("Password salah")
                     else{
                         SharedPref.id = pemain.id
+                        SharedPref.username = pemain.username
                         SharedPref.isLogin = true
                         view.onSuccess()
                     }

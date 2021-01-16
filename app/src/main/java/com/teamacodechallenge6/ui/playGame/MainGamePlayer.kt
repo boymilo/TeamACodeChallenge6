@@ -16,63 +16,71 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.teamacodechallenge6.R
+import com.teamacodechallenge6.data.local.SharedPref
+import com.teamacodechallenge6.database.TemanDatabase
 import com.teamacodechallenge6.ui.menu.MainMenuActivity
 import kotlinx.android.synthetic.main.activity_maingame.*
 
 
 class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
     private val imgLogo = "https://i.ibb.co/HC5ZPgD/splash-screen1.png"
+    private var mDB : TemanDatabase? = null
+
     private var dataPlayer1 = ""
     private var dataPlayer2 = ""
+
     private val layoutImage: ConstraintLayout by lazy { findViewById<ConstraintLayout>(R.id.activity_maingame) }
+
     private val resetFun by lazy {
         findViewById<ImageView>(R.id.imageBattle)
     }
+
     private var enemyNya: ImageButton? = null
     private val textName by lazy {
         mutableListOf(
-                findViewById<TextView>(R.id.player1),
-                findViewById(R.id.player2)
+            findViewById<TextView>(R.id.player1),
+            findViewById(R.id.player2)
         )
     }
     private val backgroundAll by lazy {
         mutableListOf(
-                findViewById<FrameLayout>(R.id.backgroundBatu), findViewById(R.id.backgroundScissors),
-                findViewById(R.id.backgroundPaper), findViewById(R.id.backgroundBatuComp),
-                findViewById(R.id.backgroundScissorsComp), findViewById(R.id.backgroundPaperComp),
+            findViewById<FrameLayout>(R.id.backgroundBatu), findViewById(R.id.backgroundScissors),
+            findViewById(R.id.backgroundPaper), findViewById(R.id.backgroundBatuComp),
+            findViewById(R.id.backgroundScissorsComp), findViewById(R.id.backgroundPaperComp),
         )
     }
     private val buttonAll by lazy {
         mutableListOf(
-                findViewById(R.id.batuPlayer),
-                findViewById(R.id.scissorsPlayer),
-                findViewById(R.id.paperPlayer),
-                findViewById(R.id.batuComp),
-                findViewById(R.id.scissorsComp),
-                findViewById(R.id.paperComp),
-                findViewById<ImageButton>(R.id.but_close)
+            findViewById(R.id.batuPlayer),
+            findViewById(R.id.scissorsPlayer),
+            findViewById(R.id.paperPlayer),
+            findViewById(R.id.batuComp),
+            findViewById(R.id.scissorsComp),
+            findViewById(R.id.paperComp),
+            findViewById<ImageButton>(R.id.but_close)
         )
     }
     private val intentDialog by lazy { Intent(this, MainMenuActivity::class.java) }
     private val controller = MainGamePresenterImp(this)
     private val randDuration = 1000L
     private var name = mutableListOf<String>()
-    private var namePlay: String = "Pemain 1"
+    private var namePlay: String? = controller.getUsername()
+    private var namePlay2 : String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maingame)
-        namePlay = intent.getStringExtra("dataName").toString()
-        name.add(namePlay)
+
+        namePlay2 = intent.getStringExtra("nama").toString()
+        name.add(namePlay!!)
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.bounce)
-        namePlay = intent.getStringExtra("dataName").toString()
         Glide.with(this)
-                .load(imgLogo).error(R.drawable.ic_logo_image)
-                .into(logoImageGame)
+            .load(imgLogo).error(R.drawable.ic_logo_image)
+            .into(logoImageGame)
         textName[0]?.text = namePlay
-        textName[1].text = getString(R.string.Player2)
+        textName[1].text = namePlay2
         reset()
         val butNya = mutableListOf(
-                buttonAll[0], buttonAll[1], buttonAll[2], buttonAll[3], buttonAll[4], buttonAll[5]
+            buttonAll[0], buttonAll[1], buttonAll[2], buttonAll[3], buttonAll[4], buttonAll[5]
         )
         butNya.forEachIndexed { _, imageButton ->
             imageButton.setOnClickListener {
@@ -124,12 +132,12 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
                 lockButtonPlay1()
                 if (dataPlayer1 != "" && dataPlayer2 != "") {
                     Toast.makeText(this, "$namePlay Memilih $dataPlayer1", Toast.LENGTH_SHORT)
-                            .show()
+                        .show()
                     lockButtonPlay2()
                     dataModel()
                     resetFun.animate().alpha(0f).scaleX(0.5f).scaleY(0.5f).setDuration(500).start()
                     buttonAll[6].animate().alpha(0f).scaleX(0.5f).scaleY(0.5f).setDuration(500)
-                            .start()
+                        .start()
                 }
                 Log.i("MainGamePlayer", "$namePlay memilih $dataPlayer1 dan Player 2 memilih $dataPlayer2 ")
 
@@ -144,9 +152,11 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
 
     //Pemrosesan Data
     private fun dataModel() {
-        val dataMauPlayer = Gameplay(dataPlayer1, dataPlayer2, "vsPlayer")
+        val dataMauPlayer = dataPlayer1?.let { Gameplay(it, dataPlayer2, "vsPlayer") }
         Log.i("MainGamePlayer", "Proses Suit Pemain vs Pemain")
-        controller.setDataPlayer(dataMauPlayer)
+        if (dataMauPlayer != null) {
+            controller.setDataPlayer(dataMauPlayer)
+        }
         controller.chooseEnemy()
         controller.compareData()
     }
@@ -156,14 +166,14 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
         buttonAll[0].isEnabled = false
         buttonAll[1].isEnabled = false
         buttonAll[2].isEnabled = false
-        Log.i("MainGamePlayer", "di Lock yekkk ga bisa main kapok kon")
+        Log.i("MainGamePlayer", "Proses berjalan tidak bisa diklik")
     }
 
     private fun lockButtonPlay2() {
         buttonAll[3].isEnabled = false
         buttonAll[4].isEnabled = false
         buttonAll[5].isEnabled = false
-        Log.i("MainGamePlayer", "di Lock yekkk ga bisa main kapok kon player 2")
+        Log.i("MainGamePlayer", "Proses berjalan tidak bisa diklik oleh pemain 2")
     }
 
 
@@ -171,38 +181,38 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
     private fun unlockButton() {
         if (!buttonAll[0].isEnabled && !buttonAll[1].isEnabled && !buttonAll[2].isEnabled) {
             buttonAll[0].isEnabled = true
-            Log.i("MainGamePlayer", "Cieee bisa buka batu")
+            Log.i("MainGamePlayer", "Anda memilih batu")
             buttonAll[1].isEnabled = true
-            Log.i("MainGamePlayer", "Cieee bisa buka gunting")
+            Log.i("MainGamePlayer", "Anda memilih  gunting")
             buttonAll[2].isEnabled = true
-            Log.i("MainGamePlayer", "Cieee bisa buka kertas")
+            Log.i("MainGamePlayer", "Anda memilih  kertas")
         }
     }
 
     private fun unlockButton2() {
         if (!buttonAll[3].isEnabled && !buttonAll[4].isEnabled && !buttonAll[5].isEnabled) {
             buttonAll[3].isEnabled = true
-            Log.i("MainGamePlayer", "Cieee bisa buka batu player 2")
+            Log.i("MainGamePlayer", "Player 2 memilih batu")
             buttonAll[4].isEnabled = true
-            Log.i("MainGamePlayer", "Cieee bisa buka gunting player 2")
+            Log.i("MainGamePlayer", "Player 2 memilih gunting")
             buttonAll[5].isEnabled = true
-            Log.i("MainGamePlayer", "Cieee bisa buka kertas player 2")
+            Log.i("MainGamePlayer", "Player 2 memilih kertas")
         }
     }
 
     //Reset semua
     private fun reset() {
         mutableListOf(
-                backgroundAll[0],
-                backgroundAll[1],
-                backgroundAll[2],
-                backgroundAll[3],
-                backgroundAll[4],
-                backgroundAll[5],
+            backgroundAll[0],
+            backgroundAll[1],
+            backgroundAll[2],
+            backgroundAll[3],
+            backgroundAll[4],
+            backgroundAll[5],
         ).forEachIndexed { _, i ->
             if (i.visibility == View.VISIBLE) {
                 i.visibility = View.INVISIBLE
-                Log.i("MainGamePlayer", "Background nya ilang semua")
+                Log.i("MainGamePlayer", "Maaf background tidak aktif")
             }
         }
         resetFun.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(randDuration).start()
@@ -239,17 +249,17 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
     override fun resultWinner(resultNya: String) {
         var winner = ""
         when (resultNya) {
-            "P1Win" -> {
+            "Pemain 1 Menang" -> {
                 winner = "$namePlay\nMENANG!"
             }
-            "P2Win" -> {
+            "Pemain 2 Menang" -> {
                 winner = "Player 2\nMENANG!"
             }
             "Seri" -> {
                 winner = "SERI!"
             }
         }
-        Log.i("MainGamePlayer", "pemenangnya $winner")
+        Log.i("MainGamePlayer", " Hasil $winner")
         Handler(Looper.getMainLooper()).postDelayed({
             val view = LayoutInflater.from(this).inflate(R.layout.activity_dialog, null, false)
             val dialogBuilder = AlertDialog.Builder(this)

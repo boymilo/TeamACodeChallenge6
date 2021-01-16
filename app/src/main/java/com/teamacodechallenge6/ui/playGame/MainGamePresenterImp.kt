@@ -1,12 +1,18 @@
 package com.teamacodechallenge6.playGame
 
 import android.util.Log
+import com.teamacodechallenge6.data.local.SharedPref
 
 
 class MainGamePresenterImp(private val listener: MainGamePresenter) {
     private var dataPlayer: Gameplay? = null
     private var dataCompRand = arrayListOf("batu", "gunting","kertas")
     private var compRandData = dataCompRand.random()
+
+    fun getUsername(): String {
+        val username = SharedPref.username!!
+        return username
+    }
 
     fun setDataPlayer(dataPlayer: Gameplay) {
         this.dataPlayer = dataPlayer
