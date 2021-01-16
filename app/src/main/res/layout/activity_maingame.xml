@@ -15,20 +15,21 @@
         android:layout_height="250dp"
         app:layout_constraintBottom_toTopOf="@id/layout_middle"
         app:layout_constraintTop_toTopOf="parent"
-        >
+        tools:layout_editor_absoluteX="16dp">
 
-            <TextView
-                android:id="@+id/textHomeFix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/mulai_bermain"
+        <TextView
+            android:id="@+id/textHomeFix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/mulai_bermain"
 
-                android:textColor="#000"
-                android:textSize="25sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="125dp"
-                tools:layout_editor_absoluteY="27dp" />
+            android:textColor="#000"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
 
         <ImageButton
@@ -38,9 +39,9 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/ic_home"
             android:contentDescription="$string/close"
+            app:layout_constraintStart_toStartOf="@+id/textHomeFix"
             app:layout_constraintTop_toBottomOf="@id/textHomeFix"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="27dp" />
+            tools:ignore="MissingConstraints" />
 
 
         <TextView
@@ -53,21 +54,23 @@
             android:textColor="#000"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@id/but_close"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="91dp" />
+            app:layout_constraintEnd_toEndOf="@+id/textHomeFix"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/but_close"
+            app:layout_constraintTop_toTopOf="@+id/but_close"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/logoImageGame"
             android:layout_width="106dp"
             android:layout_height="128dp"
             android:layout_gravity="center"
-            android:layout_marginTop="200dp"
             android:contentDescription="@string/logo_font"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/Menu"
+            app:layout_constraintStart_toStartOf="@+id/but_close"
+            app:layout_constraintTop_toBottomOf="@+id/but_close"
             app:layout_constraintVertical_bias="0.84" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

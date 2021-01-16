@@ -256,7 +256,6 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
             if (!isFinishing) {
                 dialogD1.show()
             }
-
         }, 2 * randDuration
         )
     }
