@@ -11,11 +11,12 @@
         android:id="@+id/btClose"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_gravity="right"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_gravity="end"
         android:layout_marginRight="8dp"
-        android:background="@drawable/ic_close_but" />
+        android:background="@drawable/ic_close_but"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/winner"
@@ -32,18 +33,24 @@
 
     <EditText
         android:id="@+id/etNama"
+        android:hint="Nama Temanmu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp" />
+        android:layout_marginEnd="32dp"
+        android:autofillHints=""
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/etEmail"
+        android:hint="Email Temanmu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp" />
+        android:layout_marginEnd="32dp"
+        android:autofillHints=""
+        android:inputType="textEmailAddress" />
 
     <Button
         android:id="@+id/btSaveFriend"

@@ -10,8 +10,7 @@ class MainGamePresenterImp(private val listener: MainGamePresenter) {
     private var compRandData = dataCompRand.random()
 
     fun getUsername(): String {
-        val username = SharedPref.username!!
-        return username
+        return SharedPref.username!!
     }
 
     fun setDataPlayer(dataPlayer: Gameplay) {

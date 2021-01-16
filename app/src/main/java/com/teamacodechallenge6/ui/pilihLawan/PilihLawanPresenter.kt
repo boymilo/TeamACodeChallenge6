@@ -5,6 +5,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 interface PilihLawanPresenter {
 //    fun signUp(username: String, password: String, email: String)
-    fun ShowList(recyclerView: RecyclerView, context: Context)
-    fun DestroyDB()
+    fun showList(recyclerView: RecyclerView, context: Context)
+    fun destroyDB()
 }

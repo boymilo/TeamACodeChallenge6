@@ -2,7 +2,6 @@ package com.teamacodechallenge6.data.local
 
 import android.content.Context
 import com.teamacodechallenge6.App
-import com.teamacodechallenge6.data.model.Users
 
 object SharedPref {
     private const val KEY_ISLOGIN = "KEY_ISLOGIN"

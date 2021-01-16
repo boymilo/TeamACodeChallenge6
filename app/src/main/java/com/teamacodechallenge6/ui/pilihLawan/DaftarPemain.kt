@@ -19,7 +19,7 @@ class DaftarPemain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pilih_lawan)
 
-        tvDaftar.setText("Daftar Pemain")
+        tvDaftar.text = ("Daftar Pemain")
         mDB = TemanDatabase.getInstance(this)
         recyclerView.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false)
@@ -31,7 +31,7 @@ class DaftarPemain : AppCompatActivity() {
         fetchData()
     }
 
-    fun fetchData(){
+    private fun fetchData(){
         GlobalScope.launch {
             val listPemain = mDB?.pemainDao()?.getAllPemain()
             runOnUiThread {

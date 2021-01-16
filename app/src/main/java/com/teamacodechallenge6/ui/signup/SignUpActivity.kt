@@ -13,7 +13,6 @@ import com.teamacodechallenge6.R
 import com.teamacodechallenge6.ui.login.LoginActivity
 
 class SignUpActivity : AppCompatActivity(), SignUpView {
-    private var presenter: SignUpPresenter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -23,9 +22,9 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         val password by lazy {this.findViewById<EditText>(R.id.etPassword)}
         val rePassword by lazy {this.findViewById<EditText>(R.id.etRePassword)}
         val email by lazy {this.findViewById<EditText>(R.id.etEmail)}
-        var presenter = SignUpPresenterImp(this)
+        val presenter = SignUpPresenterImp(this)
         val field = mutableListOf<EditText>(username, password, rePassword, email)
-        val nameField = mutableListOf<String>("Username", "Password", "Re-Password", "Email")
+        val nameField = mutableListOf("Username", "Password", "Re-Password", "Email")
         var checker = true
 
         Glide.with(this)
@@ -34,7 +33,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         btnSignUp.setOnClickListener {
             field.forEach{
                 if (it.text.isEmpty()){
-                    var btn = nameField.get(field.indexOf(it))
+                    val btn = nameField[field.indexOf(it)]
                     it.error = "$btn harus diisi"
                     checker = false
                 }
@@ -46,20 +45,12 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
                 if(rePassword.text.toString() != password.text.toString()){
                     rePassword.error = "Password tidak sama"
                 }
-                else if (checker == true){
+                else if (checker){
                     presenter.signUp(username.text.toString(), password.text.toString(), email.text.toString())
                 }
             }
             checker = true
         }
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     override fun onSuccess() {

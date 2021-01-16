@@ -1,17 +1,13 @@
 package com.teamacodechallenge6.ui.menu
 
 import android.content.Intent
-
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.snackbar.Snackbar
 import com.teamacodechallenge6.R
-import com.teamacodechallenge6.data.local.SharedPref
 import com.teamacodechallenge6.playGame.MainGameComputer
-import com.teamacodechallenge6.playGame.MainGamePlayer
 import com.teamacodechallenge6.ui.login.LoginActivity
-import com.teamacodechallenge6.ui.login.LoginPresenter
 import com.teamacodechallenge6.ui.pilihLawan.PilihLawan
 import com.teamacodechallenge6.ui.profileteman.ProfileTeman
 import kotlinx.android.synthetic.main.activity_main.*

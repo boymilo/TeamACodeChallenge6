@@ -81,7 +81,7 @@ class TemanPresenterImp(private val view: TemanView) : TemanPresenter {
         }
     }
 
-    override fun DestroyDB() {
+    override fun destroyDB() {
         TemanDatabase.destroyInstance()
     }
 }

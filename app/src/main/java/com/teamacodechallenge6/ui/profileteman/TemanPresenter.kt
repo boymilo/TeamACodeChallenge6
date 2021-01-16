@@ -10,5 +10,5 @@ interface TemanPresenter {
     fun listTeman(recyclerView: RecyclerView, context: Context)
     fun deleteTeman(list:List<Teman>, position: Int)
     fun editTeman(list:List<Teman>, position: Int)
-    fun DestroyDB()
+    fun destroyDB()
 }
