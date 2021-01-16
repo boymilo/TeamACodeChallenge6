@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.addfriend_dialog.view.*
 
 class ProfileTeman : AppCompatActivity(), TemanView {
     private lateinit var presenter: TemanPresenter
+    private var usernamePlayer = mutableListOf<String>()
+    private var usernameEmail = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_teman)
@@ -43,7 +45,10 @@ class ProfileTeman : AppCompatActivity(), TemanView {
                     view.etEmail.error = "Email harus diisi"
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(emailTeman).matches()) {
                     view.etEmail.error = "Mohon isi email yang benar"
-                } else {
+                } else if(usernamePlayer[0]==namaTeman&&usernameEmail[0]==emailTeman){
+                    view.etNama.error = "Nama teman tidak boleh sama dengan player"
+                    view.etEmail.error = "Email teman tidak boleh sama dengan player"
+                }else {
                     presenter.addTeman(namaTeman, emailTeman)
                     dialogD1.dismiss()
 
@@ -89,6 +94,8 @@ class ProfileTeman : AppCompatActivity(), TemanView {
     }
 
     override fun nameEmail(username: String, email: String) {
+        usernamePlayer.add(username)
+        usernameEmail.add(email)
         tvNamePlayer.text=username
         tvEmailPlayer.text=email
     }
