@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#DDEAF6"
+    android:orientation="vertical"
     tools:context=".ui.profileteman.ProfileTeman">
 
     <ImageView
@@ -30,47 +30,58 @@
 
     <LinearLayout
         android:id="@+id/ll1"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_logo"
         android:layout_centerHorizontal="true"
+
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:fontFamily="@font/comic"
-            android:text="Nama Player: " />
+            android:text="Nama Player : " />
 
         <TextView
             android:id="@+id/tvNamePlayer"
-            android:fontFamily="@font/comic"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comic" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll2"
-        android:layout_width="wrap_content"
+        android:layout_width="349dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll1"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:fontFamily="@font/comic"
             android:text="Email Player : " />
 
         <TextView
             android:id="@+id/tvEmailPlayer"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/comic"
-            android:layout_width="150dp"
-            android:inputType="textEmailAddress"
-            android:layout_height="wrap_content" />
+            android:inputType="textEmailAddress" />
 
     </LinearLayout>
 
@@ -91,10 +102,10 @@
         android:layout_below="@id/rl"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:text="Daftar Teman"
         android:fontFamily="@font/comic"
+        android:text="Daftar Teman"
         android:textSize="22dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -107,15 +118,15 @@
 
     <Button
         android:id="@+id/btadd"
-        android:background="@color/orange"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="15dp"
+        android:background="@color/orange"
         android:fontFamily="@font/comic"
-        android:textStyle="bold"
+        android:text="tambah teman"
         android:textColor="@color/white"
-        android:text="tambah teman" />
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

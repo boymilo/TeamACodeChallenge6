@@ -4,4 +4,5 @@ import android.content.Context
 
 interface MainMenuPresenter {
     fun showUsername()
+    fun logout()
 }

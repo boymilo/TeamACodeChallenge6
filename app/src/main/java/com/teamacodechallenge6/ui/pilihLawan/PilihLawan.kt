@@ -3,10 +3,12 @@ package com.teamacodechallenge6.ui.pilihLawan
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.View
+import android.widget.Toast
 import com.teamacodechallenge6.R
-import com.teamacodechallenge6.database.TemanDatabase
+import com.teamacodechallenge6.database.Teman
 import com.teamacodechallenge6.ui.menu.MainMenuActivity
+import com.teamacodechallenge6.ui.profileteman.TemanView
 import kotlinx.android.synthetic.main.activity_pilih_lawan.*
 import kotlinx.android.synthetic.main.activity_profile_teman.*
 import kotlinx.android.synthetic.main.activity_profile_teman.recyclerView
@@ -45,4 +47,5 @@ class PilihLawan : AppCompatActivity() {
         startActivity(Intent(this, MainMenuActivity::class.java))
         finish()
     }
+
 }

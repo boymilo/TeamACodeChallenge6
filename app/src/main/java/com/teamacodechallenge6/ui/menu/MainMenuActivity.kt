@@ -10,6 +10,7 @@ import com.teamacodechallenge6.R
 import com.teamacodechallenge6.data.local.SharedPref
 import com.teamacodechallenge6.playGame.MainGameComputer
 import com.teamacodechallenge6.playGame.MainGamePlayer
+import com.teamacodechallenge6.ui.login.LoginActivity
 import com.teamacodechallenge6.ui.login.LoginPresenter
 import com.teamacodechallenge6.ui.pilihLawan.PilihLawan
 import com.teamacodechallenge6.ui.profileteman.ProfileTeman
@@ -35,13 +36,20 @@ class MainMenuActivity : AppCompatActivity(), MainMenuView {
             startActivity(Intent(this, ProfileTeman::class.java))
             finish()
         }
+        btLogout.setOnClickListener {
+            presenter.logout()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
 
     override fun onSuccess(msg: String) {
-        val snackbar = Snackbar.make(parent, msg, Snackbar.LENGTH_INDEFINITE)
+        val snackbar = Snackbar.make(parent,"Selamat datang $msg", Snackbar.LENGTH_INDEFINITE)
         snackbar.setAction("Tutup"){
             snackbar.dismiss()
         }.show()
+        tvPlayer.text=msg
+        tvPlayer2.text=msg
     }
 
     override fun onBackPressed() {
