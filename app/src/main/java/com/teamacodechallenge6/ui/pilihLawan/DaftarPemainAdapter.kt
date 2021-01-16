@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.R
-import com.teamacodechallenge6.database.Pemain
+import com.teamacodechallenge6.data.database.Pemain
 import com.teamacodechallenge6.ui.profileteman.ProfileTeman
 import kotlinx.android.synthetic.main.item_teman.view.*
 

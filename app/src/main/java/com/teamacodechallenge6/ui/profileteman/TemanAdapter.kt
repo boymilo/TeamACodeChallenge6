@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.R
-import com.teamacodechallenge6.database.Teman
+import com.teamacodechallenge6.data.database.Teman
 import kotlinx.android.synthetic.main.dialog_teman.view.*
 import kotlinx.android.synthetic.main.item_teman.view.*
 

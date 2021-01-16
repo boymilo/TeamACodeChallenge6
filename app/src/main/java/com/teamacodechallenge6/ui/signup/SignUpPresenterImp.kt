@@ -2,8 +2,8 @@ package com.teamacodechallenge6.ui.signup
 
 import com.teamacodechallenge6.App.Companion.context
 import com.teamacodechallenge6.App.Companion.mDB
-import com.teamacodechallenge6.database.Pemain
-import com.teamacodechallenge6.database.TemanDatabase
+import com.teamacodechallenge6.data.database.Pemain
+import com.teamacodechallenge6.data.database.TemanDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

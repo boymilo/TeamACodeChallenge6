@@ -1,4 +1,4 @@
-package com.teamacodechallenge6.playGame
+package com.teamacodechallenge6.ui.playGame
 
 import android.util.Log
 import com.teamacodechallenge6.data.local.SharedPref

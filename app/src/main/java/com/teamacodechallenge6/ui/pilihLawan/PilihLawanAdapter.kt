@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge6.R
-import com.teamacodechallenge6.database.Teman
-import com.teamacodechallenge6.playGame.MainGamePlayer
+import com.teamacodechallenge6.data.database.Teman
+import com.teamacodechallenge6.ui.playGame.MainGamePlayer
 import kotlinx.android.synthetic.main.item_teman.view.*
 
 class PilihLawanAdapter(private val listTeman: List<Teman>, val context: Context) :

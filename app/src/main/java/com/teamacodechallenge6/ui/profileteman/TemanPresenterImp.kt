@@ -6,8 +6,8 @@ import com.teamacodechallenge6.App
 import com.teamacodechallenge6.App.Companion.context
 import com.teamacodechallenge6.App.Companion.mDB
 import com.teamacodechallenge6.data.local.SharedPref
-import com.teamacodechallenge6.database.Teman
-import com.teamacodechallenge6.database.TemanDatabase
+import com.teamacodechallenge6.data.database.Teman
+import com.teamacodechallenge6.data.database.TemanDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -18,7 +18,7 @@ class TemanPresenterImp(private val view: TemanView) : TemanPresenter {
         GlobalScope.launch(Dispatchers.IO){
             val pemain = SharedPref.id?.let { mDB?.pemainDao()?.getPemainById(it) }
             launch(Dispatchers.Main) {
-                val username = pemain?.username.toString()
+                val username=pemain?.username.toString()
                 val email=pemain?.email.toString()
                 view.nameEmail(username,email)
             }
@@ -27,9 +27,10 @@ class TemanPresenterImp(private val view: TemanView) : TemanPresenter {
 
     override fun addTeman(name: String, email: String) {
         mDB = context?.let { TemanDatabase.getInstance(it) }
-        val objectTeman = Teman(null, name, email)
+        val id=SharedPref.id
+        val objectTeman = id?.let { Teman(null, it,name, email) }
         GlobalScope.launch(Dispatchers.IO) {
-           val result=mDB?.temanDao()?.insertTeman(objectTeman)
+           val result= objectTeman?.let { mDB?.temanDao()?.insertTeman(it) }
             launch(Dispatchers.Main) {
                 if (result!=0.toLong()){
                     view.onSuccessTeman("Teman kamu $name berhasil ditambahakan")
@@ -43,9 +44,10 @@ class TemanPresenterImp(private val view: TemanView) : TemanPresenter {
     }
 
     override fun listTeman(recyclerView: RecyclerView, context: Context) {
+        val id=SharedPref.id
         mDB = App.context?.let { TemanDatabase.getInstance(it) }
         GlobalScope.launch (Dispatchers.IO){
-            val listTeman = mDB?.temanDao()?.getAllTeman()
+            val listTeman = id?.let { mDB?.temanDao()?.getAllbyId(it) }
             launch(Dispatchers.Main){
                 listTeman?.let {
                     val adapter = TemanAdapter(listTeman, context)
@@ -55,7 +57,7 @@ class TemanPresenterImp(private val view: TemanView) : TemanPresenter {
         }
     }
 
-    override fun deleteTeman(list: List<Teman>,position:Int) {
+    override fun deleteTeman(list: List<Teman>, position:Int) {
         GlobalScope.launch (Dispatchers.IO){
            val result= mDB?.temanDao()?.deleteTeman(list[position])
             launch (Dispatchers.Main){
@@ -80,6 +82,7 @@ class TemanPresenterImp(private val view: TemanView) : TemanPresenter {
             }
         }
     }
+
 
     override fun destroyDB() {
         TemanDatabase.destroyInstance()

@@ -1,4 +1,4 @@
-package com.teamacodechallenge6.database
+package com.teamacodechallenge6.data.database
 
 import android.content.Context
 import androidx.room.Database

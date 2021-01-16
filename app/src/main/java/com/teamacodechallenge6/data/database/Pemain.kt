@@ -1,4 +1,4 @@
-package com.teamacodechallenge6.database
+package com.teamacodechallenge6.data.database
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -9,8 +9,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Entity
 @Parcelize
-data class Teman(
+data class Pemain(
     @PrimaryKey(autoGenerate = true) var id: Int?,
-    @ColumnInfo(name = "nama") var nama: String,
+    @ColumnInfo(name = "username") var username: String,
+    @ColumnInfo(name = "password") var password: String,
     @ColumnInfo(name = "email") var email: String
 ): Parcelable
