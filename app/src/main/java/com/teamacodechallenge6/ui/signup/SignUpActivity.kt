@@ -3,6 +3,7 @@ package com.teamacodechallenge6.ui.signup
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -10,7 +11,6 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.teamacodechallenge6.R
 import com.teamacodechallenge6.ui.login.LoginActivity
-import com.teamacodechallenge6.ui.login.LoginPresenter
 
 class SignUpActivity : AppCompatActivity(), SignUpView {
     private var presenter: SignUpPresenter? = null
@@ -23,21 +23,34 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         val password by lazy {this.findViewById<EditText>(R.id.etPassword)}
         val rePassword by lazy {this.findViewById<EditText>(R.id.etRePassword)}
         val email by lazy {this.findViewById<EditText>(R.id.etEmail)}
-        presenter = SignUpPresenterImp(this)
+        var presenter = SignUpPresenterImp(this)
+        val field = mutableListOf<EditText>(username, password, rePassword, email)
+        val nameField = mutableListOf<String>("Username", "Password", "Re-Password", "Email")
+        var checker = true
 
         Glide.with(this)
             .load("https://i.ibb.co/HC5ZPgD/splash-screen1.png")
             .into(logo)
         btnSignUp.setOnClickListener {
-            if (password.text.toString() == rePassword.text.toString()){
-                presenter?.signUp(username.text.toString(), password.text.toString(), email.text.toString())
-                var username1 = username.text.toString()
-                var password1 = password.text.toString()
-                var email1 = email.text.toString()
+            field.forEach{
+                if (it.text.isEmpty()){
+                    var btn = nameField.get(field.indexOf(it))
+                    it.error = "$btn harus diisi"
+                    checker = false
+                }
+            }
+            if (!Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()) {
+                email.error = "Mohon isi email yang benar"
             }
             else {
-                Toast.makeText(this, "Password tidak sama", Toast.LENGTH_SHORT).show()
+                if(rePassword.text.toString() != password.text.toString()){
+                    rePassword.error = "Password tidak sama"
+                }
+                else if (checker == true){
+                    presenter.signUp(username.text.toString(), password.text.toString(), email.text.toString())
+                }
             }
+            checker = true
         }
     }
 
@@ -57,5 +70,10 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
 
     override fun onError(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 }

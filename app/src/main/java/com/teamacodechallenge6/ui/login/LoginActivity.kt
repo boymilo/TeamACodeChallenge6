@@ -31,7 +31,15 @@ class LoginActivity : AppCompatActivity(), LoginView {
             .into(logo)
 
         btnLogin.setOnClickListener {
-            presenter?.login(username.text.toString(), password.text.toString())
+            if(username.text.toString().isEmpty()){
+                username.error = "Username harus diisi"
+            }
+            if(password.text.toString().isEmpty()){
+                password.error = "Password harus diisi"
+            }
+            else{
+                presenter?.login(username.text.toString(), password.text.toString())
+            }
         }
 
         btnSignUp.setOnClickListener {

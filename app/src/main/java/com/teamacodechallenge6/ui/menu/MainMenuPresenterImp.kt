@@ -11,15 +11,8 @@ import kotlinx.coroutines.launch
 class MainMenuPresenterImp(private val view: MainMenuView) : MainMenuPresenter{
 
     override fun showUsername() {
-        mDB = context?.let { TemanDatabase.getInstance(it) }
-        GlobalScope.launch(Dispatchers.IO){
-            val pemain = mDB?.pemainDao()?.getPemainById(SharedPref.id!!)
-            launch(Dispatchers.Main) {
-                var username = pemain?.username
-                view.onSuccess("Selamat datang $username")
-            }
-        }
-
+        val username = SharedPref.username
+        view.onSuccess("Selamat datang $username")
     }
 
 }
