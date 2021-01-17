@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DDEAF6"
     tools:context=".ui.menu.MainMenuActivity">
 
     <ImageView
@@ -13,13 +12,13 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
+        android:contentDescription="@string/logo_font"
         android:src="@drawable/ic_logo_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="20dp"
-        android:contentDescription="TODO" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -35,78 +34,84 @@
             android:id="@+id/ivMenu1"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
+            android:contentDescription="@string/playervsplayer"
             android:src="@drawable/ic_landing_page1"
             app:layout_constraintEnd_toStartOf="@id/ivMenu2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="20dp"
-            android:contentDescription="TODO" />
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@+id/ivMenu1"
             app:layout_constraintStart_toStartOf="@+id/ivMenu1"
-            app:layout_constraintTop_toBottomOf="@+id/ivMenu1"
-            android:orientation="horizontal">
+            app:layout_constraintTop_toBottomOf="@+id/ivMenu1">
 
-        <TextView
-            android:id="@+id/tvPlayer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/comic"
-            android:text="Player"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/tvNamaPlayer"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivMenu1" />
+            <TextView
+                android:id="@+id/tvPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/comic"
+                android:text="@string/player"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tvNamaPlayer"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivMenu1" />
 
-        <TextView
-            android:id="@+id/tvNamaPlayer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/comic"
-            android:text=" vs Teman"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tvPlayer"
-            app:layout_constraintEnd_toStartOf="@+id/ivMenu2"
-            app:layout_constraintTop_toTopOf="@+id/tvPlayer"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/tvNamaPlayer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comic"
+                android:text="@string/vs_teman"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPlayer"
+                app:layout_constraintEnd_toStartOf="@+id/ivMenu2"
+                app:layout_constraintTop_toTopOf="@+id/tvPlayer"
+                app:layout_constraintVertical_bias="0.0" />
         </LinearLayout>
+
         <ImageView
             android:id="@+id/ivMenu2"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:contentDescription="@string/playervscpu"
             android:src="@drawable/ic_landing_page2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivMenu1"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="TODO" />
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@+id/ivMenu2"
             app:layout_constraintStart_toStartOf="@+id/ivMenu2"
-            app:layout_constraintTop_toBottomOf="@+id/ivMenu2"
-            android:orientation="horizontal">
+            app:layout_constraintTop_toBottomOf="@+id/ivMenu2">
 
             <TextView
                 android:id="@+id/tvPlayer2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/comic"
-                android:text="Player"
+                android:text="@string/player"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvComputer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/comic"
-                android:text=" vs Computer"
+                android:text="@string/vs_computer"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -116,19 +121,18 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="76dp"
+            android:contentDescription="@string/player"
             android:src="@drawable/ic_people"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivMenu1"
-            android:contentDescription="TODO" />
+            app:layout_constraintTop_toBottomOf="@id/ivMenu1" />
 
         <TextView
-            android:id="@+id/tvProfileTeman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/comic"
-            android:text="Profile dan Daftar Teman"
+            android:text="@string/profile_dan_daftar_teman"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/ivMenu3"
@@ -145,7 +149,7 @@
         android:layout_marginEnd="32dp"
         android:background="@color/orange"
         android:fontFamily="@font/comic"
-        android:text="Logout"
+        android:text="@string/logout"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

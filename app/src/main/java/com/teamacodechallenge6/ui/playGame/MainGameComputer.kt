@@ -12,18 +12,18 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.teamacodechallenge6.R
 import com.teamacodechallenge6.ui.menu.MainMenuActivity
+
 import kotlinx.android.synthetic.main.activity_maingame.*
 
 
 class MainGameComputer : AppCompatActivity(), MainGamePresenter {
     private val imgLogo = "https://i.ibb.co/HC5ZPgD/splash-screen1.png"
     private var dataPlayer1 = ""
-    private val layoutImage: ConstraintLayout by lazy { findViewById(R.id.activity_maingame) }
+    private val layoutImage: LinearLayout by lazy { findViewById(R.id.activity_maingame) }
     private val resetFun by lazy {
         findViewById<ImageView>(R.id.imageBattle)
     }
@@ -40,7 +40,7 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
         mutableListOf(
             findViewById(R.id.batuPlayer), findViewById(R.id.scissorsPlayer),
             findViewById(R.id.paperPlayer), findViewById(R.id.batuComp), findViewById(R.id.scissorsComp),
-            findViewById(R.id.paperComp), findViewById<ImageButton>(R.id.but_close)
+            findViewById(R.id.paperComp), findViewById<ImageButton>(R.id.but_home)
         )
     }
     private val textName by lazy {
@@ -104,8 +104,8 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
                 buttonAll[6].animate().alpha(0f).scaleX(0.5f).scaleY(0.5f).setDuration(500).start()
             }
         }
-        buttonAll[3].setOnClickListener {
-            buttonAll[3].startAnimation(animation)
+        buttonAll[6].setOnClickListener {
+            buttonAll[6].startAnimation(animation)
             onBackPressed()
             Log.i("MainGameComputer", "playernya klik keluar")
         }
@@ -137,9 +137,7 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
     private fun dataModel() {
         val dataMauPlayer = Gameplay(dataPlayer1, "", "vsCPU")
         Log.i("MainGameComputer", "Proses Suit Computer vs Pemain")
-        if (dataMauPlayer != null) {
-            controller.setDataPlayer(dataMauPlayer)
-        }
+        controller.setDataPlayer(dataMauPlayer)
         controller.chooseEnemy()
         controller.compareData()
     }
@@ -243,6 +241,7 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
             val winnerInfo by lazy { view.findViewById<TextView>(R.id.winner) }
             val playAgain by lazy { view.findViewById<Button>(R.id.play_again) }
             val backMenu by lazy { view.findViewById<Button>(R.id.back_menu) }
+            val exitGame by lazy { view.findViewById<Button>(R.id.quit) }
             winnerInfo.text = winner
             playAgain.setOnClickListener {
                 reset()
@@ -251,7 +250,11 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
             backMenu.setOnClickListener {
                 intentDialog.putExtra("dataName", name[0])
                 startActivity(intentDialog)
+                finish()
 
+            }
+            exitGame.setOnClickListener{
+                finish()
             }
             if (!isFinishing) {
                 dialogD1.show()
@@ -264,6 +267,7 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
         val snackComp = Snackbar.make(layoutImage, "Apakah ingin keluar?", Snackbar.LENGTH_SHORT)
         snackComp.setAction("Keluar") {
             snackComp.dismiss()
+            startActivity(Intent(this, MainMenuActivity::class.java))
             finish()
         }.show()
         Log.i("MainGameComputer", "Keluar")

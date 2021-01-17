@@ -5,58 +5,35 @@
     android:id="@+id/activity_maingame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundAll"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context=".ui.playGame.MainGameComputer">
 
-   
+    <ImageButton
+        android:id="@+id/but_home"
+        android:layout_width="34dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_home"
+        android:contentDescription="@string/string_close"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="27dp" />
 
-        <TextView
-            android:id="@+id/textHomeFix"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/mulai_bermain"
-            android:layout_marginTop="50dp"
-            android:textColor="#000"
-            android:textSize="25sp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="125dp"
-            tools:layout_editor_absoluteY="27dp" />
+    <ImageView
+        android:id="@+id/logoImageGame"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/logo_font" />
 
-
-        <ImageButton
-            android:id="@+id/but_close"
-            android:layout_width="57dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/ic_home"
-            android:contentDescription="$string/close"
-            app:layout_constraintTop_toBottomOf="@id/textHomeFix"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="27dp" />
-    
-
-        <ImageView
-            android:id="@+id/logoImageGame"
-            android:layout_width="106dp"
-            android:layout_height="128dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:contentDescription="@string/logo_font"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.84" />
-    
 
     <LinearLayout
-        android:id="@+id/layout_middle"
-        android:layout_width="412dp"
-        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
@@ -78,8 +55,12 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="24dp"
                 android:textColor="#00BCD4"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="100sp"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeStepGranularity="2sp"
+                app:autoSizeTextType="uniform" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -186,8 +167,12 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="24dp"
                 android:textColor="#00BCD4"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="100sp"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeStepGranularity="2sp"
+                app:autoSizeTextType="uniform" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"

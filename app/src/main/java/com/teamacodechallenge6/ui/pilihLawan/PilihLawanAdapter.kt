@@ -35,6 +35,7 @@ class PilihLawanAdapter(private val listTeman: List<Teman>, val context: Context
             val intent = Intent (context, MainGamePlayer::class.java)
             intent.putExtra("nama", nama)
             context.startActivity(intent)
+            (context as PilihLawan).finish()
         }
     }
 

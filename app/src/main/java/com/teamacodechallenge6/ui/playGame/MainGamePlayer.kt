@@ -12,7 +12,6 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.teamacodechallenge6.R
@@ -26,7 +25,7 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
     private var dataPlayer1 = ""
     private var dataPlayer2 = ""
 
-    private val layoutImage: ConstraintLayout by lazy { findViewById(R.id.activity_maingame) }
+    private val layoutImage: LinearLayout by lazy { findViewById(R.id.activity_maingame) }
 
     private val resetFun by lazy {
         findViewById<ImageView>(R.id.imageBattle)
@@ -54,7 +53,7 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
             findViewById(R.id.batuComp),
             findViewById(R.id.scissorsComp),
             findViewById(R.id.paperComp),
-            findViewById<ImageButton>(R.id.but_close)
+            findViewById<ImageButton>(R.id.but_home)
         )
     }
     private val intentDialog by lazy { Intent(this, MainMenuActivity::class.java) }
@@ -66,7 +65,6 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maingame)
-
         namePlay2 = intent.getStringExtra("nama").toString()
         name.add(namePlay!!)
         val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.bounce)
@@ -75,6 +73,7 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
             .into(logoImageGame)
         textName[0]?.text = namePlay
         textName[1].text = namePlay2
+
         reset()
         val butNya = mutableListOf(
             buttonAll[0], buttonAll[1], buttonAll[2], buttonAll[3], buttonAll[4], buttonAll[5]
@@ -136,7 +135,7 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
                     buttonAll[6].animate().alpha(0f).scaleX(0.5f).scaleY(0.5f).setDuration(500)
                         .start()
                 }
-                Log.i("MainGamePlayer", "$namePlay memilih $dataPlayer1 dan Player 2 memilih $dataPlayer2 ")
+                Log.i("MainGamePlayer", "$namePlay memilih $dataPlayer1 dan $namePlay2 memilih $dataPlayer2 ")
 
             }
         }
@@ -151,9 +150,7 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
     private fun dataModel() {
         val dataMauPlayer = Gameplay(dataPlayer1, dataPlayer2, "vsPlayer")
         Log.i("MainGamePlayer", "Proses Suit Pemain vs Pemain")
-        if (dataMauPlayer != null) {
-            controller.setDataPlayer(dataMauPlayer)
-        }
+        controller.setDataPlayer(dataMauPlayer)
         controller.chooseEnemy()
         controller.compareData()
     }
@@ -239,7 +236,7 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
             }
         }
         Log.e("MainGamePlayer", "pilihan Pemain 2 $resultEnemy")
-        Toast.makeText(this, "Pemain 2 Memilih $resultEnemy", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "$namePlay2 Memilih $resultEnemy", Toast.LENGTH_SHORT).show()
     }
 
     //Menampilkan hasil dari kalah atau menang
@@ -250,7 +247,7 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
                 winner = "$namePlay\nMENANG!"
             }
             "P2Win" -> {
-                winner = "Player 2\nMENANG!"
+                winner = "$namePlay2\nMENANG!"
             }
             "Seri" -> {
                 winner = "SERI!"
@@ -266,6 +263,7 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
             val winnerInfo by lazy { view.findViewById<TextView>(R.id.winner) }
             val playAgain by lazy { view.findViewById<Button>(R.id.play_again) }
             val backMenu by lazy { view.findViewById<Button>(R.id.back_menu) }
+            val exitGame by lazy { view.findViewById<Button>(R.id.quit) }
             winnerInfo.text = winner
             playAgain.setOnClickListener {
                 reset()
@@ -277,6 +275,10 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
 
                 intentDialog.putExtra("dataName", name[0])
                 startActivity(intentDialog)
+                finish()
+            }
+            exitGame.setOnClickListener{
+                finish()
             }
             dialogD1.show()
         }, 2 * randDuration
@@ -287,6 +289,7 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
         val snackPlayer = Snackbar.make(layoutImage, "Apakah ingin keluar?", Snackbar.LENGTH_SHORT)
         snackPlayer.setAction("Keluar") {
             snackPlayer.dismiss()
+            startActivity(Intent(this, MainMenuActivity::class.java))
             finish()
         }.show()
         Log.i("MainGamePlayer", "Keluar")
