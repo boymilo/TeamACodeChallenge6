@@ -101,7 +101,7 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
                 lockButton()
                 animationRandLoop()
                 resetFun.animate().alpha(0f).scaleX(0.5f).scaleY(0.5f).setDuration(500).start()
-                buttonAll[3].animate().alpha(0f).scaleX(0.5f).scaleY(0.5f).setDuration(500).start()
+                buttonAll[6].animate().alpha(0f).scaleX(0.5f).scaleY(0.5f).setDuration(500).start()
             }
         }
         buttonAll[3].setOnClickListener {
