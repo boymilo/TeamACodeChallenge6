@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DDEAF6"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context=".ui.profileteman.ProfileTeman">
 
     <ImageView
@@ -17,7 +17,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/home"
         android:src="@drawable/ic_home" />
 
     <ImageView
@@ -26,7 +26,7 @@
         android:layout_height="147dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/logo_font"
         android:src="@drawable/ic_logo_image" />
 
     <LinearLayout
@@ -47,7 +47,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:fontFamily="@font/comic"
-            android:text="Nama Player : " />
+            android:text="@string/nama_player" />
 
         <TextView
             android:id="@+id/tvNamePlayer"
@@ -72,10 +72,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="Alamat Email :"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:fontFamily="@font/comic" />
+            android:fontFamily="@font/comic"
+            android:text="@string/alamat_email" />
 
         <TextView
             android:id="@+id/tvEmailPlayer"
@@ -103,7 +103,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/comic"
-        android:text="Daftar Teman"
+        android:text="@string/daftar_teman"
         android:textSize="22sp"
         android:textStyle="bold" />
 
@@ -124,7 +124,7 @@
         android:layout_margin="15dp"
         android:background="@color/orange"
         android:fontFamily="@font/comic"
-        android:text="tambah teman"
+        android:text="@string/tambah_teman"
         android:textColor="@color/white"
         android:textStyle="bold" />
 

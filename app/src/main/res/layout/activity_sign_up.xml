@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DDEAF6"
+    android:background="@drawable/background"
     tools:context=".ui.signup.SignUpActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -13,14 +13,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_marginBottom="300dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="300dp">
 
             <ImageView
                 android:id="@+id/ivLogo"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
-                android:contentDescription="TODO"
+                android:contentDescription="@string/logo_font"
                 app:layout_constraintBottom_toBottomOf="@id/etUsername"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,7 @@
                 android:autofillHints=""
                 android:fontFamily="@font/comic"
                 android:gravity="center_horizontal"
-                android:hint="Username"
+                android:hint="@string/username"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
                 android:autofillHints=""
                 android:fontFamily="@font/comic"
                 android:gravity="center_horizontal"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
                 android:autofillHints=""
                 android:fontFamily="@font/comic"
                 android:gravity="center_horizontal"
-                android:hint="Re-Password"
+                android:hint="@string/re_password"
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
                 android:autofillHints=""
                 android:fontFamily="@font/comic"
                 android:gravity="center_horizontal"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +89,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@color/md_blue_200"
                 android:fontFamily="@font/comic"
-                android:text="Sign Up"
+                android:text="@string/sign_up"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

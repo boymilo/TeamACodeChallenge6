@@ -34,6 +34,7 @@ class DaftarPemainAdapter(private val listPemain: List<Pemain>, val context: Con
             val intent = Intent (context, ProfileTeman::class.java)
             intent.putExtra("nama", userName)
             context.startActivity(intent)
+            (context as DaftarPemain).finish()
         }
     }
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DDEAF6"
+    android:background="@drawable/background"
     tools:context=".ui.pilihLawan.PilihLawan">
 
     <ImageView
@@ -17,7 +17,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:src="@drawable/ic_home"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/home" />
 
     <TextView
         android:id="@+id/tvDaftar"
@@ -26,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         android:fontFamily="@font/comic"
-        android:text="Daftar Teman"
+        android:text="@string/daftar_teman"
         android:textSize="26sp"
         android:textStyle="bold" />
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_dialog"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/background_dialog"
@@ -16,7 +15,7 @@
         android:layout_gravity="end"
         android:layout_marginRight="8dp"
         android:background="@drawable/ic_close_but"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/string_close" />
 
     <TextView
         android:id="@+id/winner"
@@ -26,14 +25,14 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/font_comic"
         android:lineSpacingExtra="-8dp"
-        android:text="Siapa nama temanmu dan emailnya?"
+        android:text="@string/siapa_nama_temanmu_dan_emailnya"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
     <EditText
         android:id="@+id/etNama"
-        android:hint="Nama Temanmu"
+        android:hint="@string/nama_temanmu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -43,7 +42,7 @@
 
     <EditText
         android:id="@+id/etEmail"
-        android:hint="Email Temanmu"
+        android:hint="@string/email_temanmu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -62,7 +61,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="35dp"
         android:background="@drawable/butt_orange"
-        android:text="Save"
+        android:text="@string/save"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18sp"
