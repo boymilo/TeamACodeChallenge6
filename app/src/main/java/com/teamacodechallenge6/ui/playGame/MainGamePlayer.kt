@@ -246,10 +246,10 @@ class MainGamePlayer : AppCompatActivity(), MainGamePresenter {
     override fun resultWinner(resultNya: String) {
         var winner = ""
         when (resultNya) {
-            "Pemain 1 Menang" -> {
+            "P1Win" -> {
                 winner = "$namePlay\nMENANG!"
             }
-            "Pemain 2 Menang" -> {
+            "P2Win" -> {
                 winner = "Player 2\nMENANG!"
             }
             "Seri" -> {
