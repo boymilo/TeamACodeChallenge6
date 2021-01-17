@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_maingame"
@@ -9,13 +9,7 @@
     android:orientation="vertical"
     tools:context=".ui.playGame.MainGameComputer">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_top"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:layout_constraintBottom_toTopOf="@id/layout_middle"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp">
+   
 
         <TextView
             android:id="@+id/textHomeFix"
@@ -23,13 +17,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/mulai_bermain"
-
+            android:layout_marginTop="50dp"
             android:textColor="#000"
             android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="125dp"
+            tools:layout_editor_absoluteY="27dp" />
 
 
         <ImageButton
@@ -37,53 +30,37 @@
             android:layout_width="57dp"
             android:layout_height="58dp"
             android:layout_marginTop="24dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/ic_home"
             android:contentDescription="$string/close"
-            app:layout_constraintStart_toStartOf="@+id/textHomeFix"
             app:layout_constraintTop_toBottomOf="@id/textHomeFix"
-            tools:ignore="MissingConstraints" />
-
-
-        <TextView
-            android:id="@+id/Menu"
-            android:layout_width="136dp"
-            android:layout_height="58dp"
-            android:layout_gravity="center"
-            android:gravity="center_vertical"
-            android:text="Menu"
-            android:textColor="#000"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@id/but_close"
-            app:layout_constraintEnd_toEndOf="@+id/textHomeFix"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/but_close"
-            app:layout_constraintTop_toTopOf="@+id/but_close"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="27dp" />
+    
 
         <ImageView
             android:id="@+id/logoImageGame"
             android:layout_width="106dp"
             android:layout_height="128dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/logo_font"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/Menu"
-            app:layout_constraintStart_toStartOf="@+id/but_close"
-            app:layout_constraintTop_toBottomOf="@+id/but_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.84" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    
 
     <LinearLayout
         android:id="@+id/layout_middle"
         android:layout_width="412dp"
-        android:layout_height="392dp"
+        android:layout_height="200dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@id/layout_top"
+        app:layout_constraintTop_toBottomOf="+@id/logoImageGame"
         tools:ignore="MissingConstraints,NotSibling"
         tools:layout_editor_absoluteX="-8dp">
 
@@ -288,4 +265,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
