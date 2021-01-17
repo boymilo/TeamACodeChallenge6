@@ -223,7 +223,7 @@ class MainGameComputer : AppCompatActivity(), MainGamePresenter {
     override fun resultWinner(resultNya: String) {
         var winner = ""
         when (resultNya) {
-            "P1Win " -> {
+            "P1Win" -> {
                 winner = "$namePlay\nMENANG!"
             }
             "P2Win" -> {
