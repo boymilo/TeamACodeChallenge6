@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".ui.menu.MainMenuActivity">
 
     <ImageView
@@ -145,8 +146,8 @@
         android:id="@+id/btLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="150dp"
         android:background="@color/orange"
         android:fontFamily="@font/comic"
         android:text="@string/logout"
