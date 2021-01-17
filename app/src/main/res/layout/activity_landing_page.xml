@@ -21,7 +21,7 @@
         android:id="@+id/dots_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:dotsColor="@color/gray"
+        app:dotsColor="#98C2EF"
         app:dotsCornerRadius="8dp"
         app:dotsSize="16dp"
         app:dotsSpacing="4dp"
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gl1"
         app:progressMode="true"
-            app:selectedDotColor="@color/md_blue_200" />
+        app:selectedDotColor="#7CA5D1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl1"
@@ -44,12 +44,12 @@
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/butt_orange"
         android:text="@string/next"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/dots_indicator"
-        android:textColor="@color/white"
-        android:background="@color/md_blue_200"
         app:layout_constraintTop_toBottomOf="@id/gl1" />
 
 
