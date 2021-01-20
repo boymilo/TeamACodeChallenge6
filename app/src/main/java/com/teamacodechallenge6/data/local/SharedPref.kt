@@ -1,14 +1,14 @@
 package com.teamacodechallenge6.data.local
 
 import android.content.Context
-import com.teamacodechallenge6.App
+import com.teamacodechallenge6.utils.App
 
 object SharedPref {
     private const val KEY_ISLOGIN = "KEY_ISLOGIN"
     private const val KEY_ID = "KEY_ID"
     private const val KEY_USERNAME = "KEY_USERNAME"
 
-    private val pref = App.context?.getSharedPreferences("CodeChallenge6", Context.MODE_PRIVATE)
+    private val pref = App.context.get()?.getSharedPreferences("CodeChallenge6", Context.MODE_PRIVATE)
 
     var isLogin: Boolean?
         get() = pref?.getBoolean(KEY_ISLOGIN, false)

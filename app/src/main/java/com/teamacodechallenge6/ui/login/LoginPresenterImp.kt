@@ -1,7 +1,7 @@
 package com.teamacodechallenge6.ui.login
 
-import com.teamacodechallenge6.App.Companion.context
-import com.teamacodechallenge6.App.Companion.mDB
+import com.teamacodechallenge6.utils.App.Companion.context
+import com.teamacodechallenge6.utils.App.Companion.mDB
 import com.teamacodechallenge6.data.local.SharedPref
 import com.teamacodechallenge6.data.database.TemanDatabase
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +12,7 @@ class LoginPresenterImp(private val view: LoginView) : LoginPresenter {
 
 
     override fun login(username: String, password: String) {
-        mDB = context?.let { TemanDatabase.getInstance(it) }
+        mDB = context.get()?.let { TemanDatabase.getInstance(it) }
 
         GlobalScope.launch(Dispatchers.IO) {
             val pemain = mDB?.pemainDao()?.getPemainByUsername(username)

@@ -16,8 +16,8 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
-        android:src="@drawable/ic_home"
-        android:contentDescription="@string/home" />
+        android:contentDescription="@string/home"
+        android:src="@drawable/ic_home" />
 
     <TextView
         android:id="@+id/tvDaftar"
@@ -36,8 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvDaftar"
         android:layout_margin="20dp"
+        android:background="@drawable/background"
         tools:listitem="@layout/item_teman" />
-
 
 
 </RelativeLayout>
